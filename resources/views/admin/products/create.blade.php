@@ -58,6 +58,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" id ="product-gallery">
+
+                    </div>
                     <div class="card mb-3">
                         <div class="card-body">
                             <h2 class="h4 mb-3">Pricing</h2>
@@ -211,6 +214,35 @@
 
         });
     })
+
+    Dropzone.autoDiscover = false;
+    const dropzone = $("#image").dropzone({
+        init: function() {
+            this.on('addedfile', function(file) {
+                if (this.files.length > 1) {
+                    this.removeFile(this.files[0]);
+                }
+            });
+        },
+        url: "{{ route('temp-images.create') }}",
+        maxFiles: 10,
+        paramName: 'image',
+        addRemoveLinks: true,
+        acceptedFiles: "image/jpeg,image/png,image/gif",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(file, response) {
+            //$("#image_id").val(response.image_id);
+            //console.log(response)
+
+            var html = '<div class="card" style="width: 18rem;"><img src="response.ImagePath" class="card-img-top" alt="..."><div class="card-body"><a href="#" class="btn btn-danger">Delete</a></div></div>';
+            
+            $("#product-gallery").append(html);
+       
+        }
+    });
+
 </script>
 
 @endsection

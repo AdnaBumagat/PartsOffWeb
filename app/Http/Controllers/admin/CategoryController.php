@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use App\Models\TempImage;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Laravel\Facades\Image;
 
 class CategoryController extends Controller
 {
@@ -56,11 +57,10 @@ class CategoryController extends Controller
                 $dPath = public_path().'/uploads/category/'.$newImageName;
                 File::copy($sPath,$dPath);
 
-                //Generate Image Thumbnail
-                //$dPath = public_path().'/uploads/category/thumb/'.$newImageName;
-                //$img = Image::make($sPath);
-                //$img->resize(450, 600);
-                //$img->save($dPath);
+                $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
+                $img = Image::make($sPath);
+                $img->resize(450, 600);
+                $img->save($dPath);
 
                 $category->image = $newImageName;
                 $category->save();
