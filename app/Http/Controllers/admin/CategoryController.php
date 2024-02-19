@@ -53,22 +53,34 @@ class CategoryController extends Controller
 
             if (!empty($request->image_id)) {
                 $tempImage = TempImage::find($request->image_id);
-                $extArray = explode('.',$tempImage->name);
-                $ext = last($extArray);
-
-                $newImageName = $category->id.'.'.$ext;
-                $sPath = public_path().'/temp/'.$tempImage->name;
-                $dPath = public_path().'/uploads/category/'.$newImageName;
-                File::copy($sPath,$dPath);
-
-                $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
-                $img = Image::make($sPath);
-                $img->resize(450, 600);
-                $img->save($dPath);
-
-                $category->image = $newImageName;
-                $category->save();
-
+            
+                if ($tempImage) {
+                    $extArray = explode('.', $tempImage->name);
+                    $ext = last($extArray);
+            
+                    $newImageName = $category->id . '.' . $ext;
+                    $sPath = public_path() . '/temp/' . $tempImage->name;
+                    $dPath = public_path() . '/uploads/category/' . $newImageName;
+            
+                    // Copy original image
+                    File::copy($sPath, $dPath);
+            
+                    // Generate Image Thumbnail
+                    $thumbPath = public_path() . '/uploads/category/thumb/' . $newImageName;
+                    $img = Image::make($sPath);
+                    
+                    // Resize and save thumbnail
+                    $img->fit(450, 600);
+                    $img->save($thumbPath);
+            
+                    // Save original image
+                    $img = Image::make($sPath);
+                    $img->save($dPath);
+            
+                    // Update category image field
+                    $category->image = $newImageName;
+                    $category->save();
+                }
             }
 
             $request->session()->flash('success','Category added successfully');
@@ -129,13 +141,13 @@ class CategoryController extends Controller
             // Save Image Here
             if (!empty($request->image_id)) {
                 $tempImage = TempImage::find($request->image_id);
-                $ext = explode('.',$tempImage->name);
+                $extArray = explode('.',$tempImage->name);
                 $ext = last($extArray);
 
                 $newImageName = $category->id.'-'.time().'.'.$ext;
                 $sPath = public_path().'/temp/'.$tempImage->name;
                 $dPath = public_path().'/uploads/category/'.$newImageName;
-                File::copy($SPath,$dPath);
+                File::copy($sPath,$dPath);
 
                 //Generate Image Thumbnail
                 $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
