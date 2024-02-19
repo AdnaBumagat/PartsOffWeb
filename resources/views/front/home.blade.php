@@ -30,7 +30,7 @@
 	<meta name="twitter:image:alt" content="" />
 	<meta name="twitter:card" content="summary_large_image" />
 
-
+    <!--CSS links-->
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick-theme.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/style.css') }}" />
@@ -155,6 +155,7 @@
         <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
             <div class="carousel-inner">
                 <div class="carousel-item active">
+                    <!--image carousel-->
                     <!-- <img src="images/carousel-1.jpg" class="d-block w-100" alt=""> -->
 
                     <picture>
@@ -246,6 +247,7 @@
         </div>
     </section>
     <section class="section-3">
+        <!--Categories-->
         <div class="container">
             <div class="section-title">
                 <h2>Categories</h2>
@@ -360,6 +362,7 @@
     </section>
 
     <section class="section-4 pt-5">
+        <!--Featured Products-->
         <div class="container">
             <div class="section-title">
                 <h2>Featured Products</h2>
@@ -540,7 +543,7 @@
     <section class="section-4 pt-5">
         <div class="container">
             <div class="section-title">
-                <h2>Latest Produsts</h2>
+                <h2>Latest Products</h2>
             </div>
             <div class="row pb-3">
                 <div class="col-md-3">
@@ -765,6 +768,7 @@
 		</div>
 	</div>
 </footer>
+<!--js links-->
 <script src="{{ asset('front-assets/js/jquery-3.6.0.js') }}"></script>
 <script src="{{ asset('front-assets/js/bootstrap.bundle.5.1.3.min.js') }}"></script>
 <script src="{{ asset('front-assets/js/instantpages.bundle.5.1.0.min.js') }}"></script>

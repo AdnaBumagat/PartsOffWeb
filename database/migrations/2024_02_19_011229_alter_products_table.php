@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('categories', function(Blueprint $table){
-            $table->enum('showHome', ['Yes', 'No'])->after('status')->default('No');
+        Schema::table('products', function (Blueprint $table) {
+            $table->text('description')->change();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('categories', function(Blueprint $table){
-            $table->dropColumn('showHome');
+        Schema::table('products', function(Blueprint $table){
+            $table->string('description')->change();
         });
     }
 };

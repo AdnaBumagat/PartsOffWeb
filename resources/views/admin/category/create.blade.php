@@ -73,9 +73,7 @@ $("#categoryForm").submit(function(event){
         }, error: function(jqXHR, exception){
             console.log("something went wrong");
         }
-
     })
-
 });
 </script>
 @endsection
