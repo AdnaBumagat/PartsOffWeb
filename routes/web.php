@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TempImagesController;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\FrontController;
@@ -43,7 +44,6 @@ Route::group(['prefix'=>'admin'],function(){
 
         //Category Routes
         Route::get('/categories',[CategoryController::class,'index'])->name('categories.index');
-
         Route::get('/categories/create',[CategoryController::class,'create'])->name('categories.create');
         Route::post('/categories',[CategoryController::class,'store'])->name('categories.store');
 
@@ -61,6 +61,10 @@ Route::group(['prefix'=>'admin'],function(){
 
             ]);
         })->name('getSlug');
+
+        //Product Routes
+        Route::get('/products/create',[ProductController::class,'create'])->name('products.create');
+        Route::post('/products',[ProductController::class,'store'])->name('products.store');
     });
 
 });

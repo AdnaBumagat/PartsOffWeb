@@ -19,7 +19,8 @@ class CategoryFactory extends Factory
         return [
             'name' => fake()->name(),
             'status' => rand(0,1),
-            'slug' => fake()->name()
+            'slug' => fake()->name(),
+            'image'=> $this->faker->numberBetween(1,6).'.jpg'
         ];
     }
 }
