@@ -172,7 +172,6 @@ class CategoryController extends Controller
     {
         $category = Category::find($categoryId);
 
-
         if(empty($category)){
             $request->session()->flash('error', 'Category not found.');
             return response()->json([
