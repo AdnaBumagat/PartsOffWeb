@@ -37,5 +37,13 @@ class TempImagesController extends Controller
                 'message' => 'Image uploaded successfully'
             ]);
         }
+
+=========
+
+class TempImagesController extends Controller
+{
+    public function create(Request $request){
+        
+>>>>>>>>> Temporary merge branch 2
     }
 }

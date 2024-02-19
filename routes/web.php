@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TempImagesController;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -22,9 +23,11 @@ use Illuminate\Support\Str;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [FrontController::class, 'index'])->name('front.home');
 
 Route::get('/admin/login',[AdminLoginController::class,'index'])->name('admin.login');
 
@@ -42,9 +45,11 @@ Route::group(['prefix'=>'admin'],function(){
 
         //Category Routes
         Route::get('/categories',[CategoryController::class,'index'])->name('categories.index');
-
         Route::get('/categories/create',[CategoryController::class,'create'])->name('categories.create');
         Route::post('/categories',[CategoryController::class,'store'])->name('categories.store');
+        Route::get('/categories/{categories}/edit',[CategoryController::class,'edit'])->name('categories.edit');
+        Route::put('/categories/{categories}',[CategoryController::class,'update'])->name('categories.update');
+        Route::delete('/categories/{categories}',[CategoryController::class,'destroy'])->name('categories.delete');
 
         //temp-images.create
         Route::post('/upload-temp-image',[TempImagesController::class,'create'])->name('temp-images.create');
