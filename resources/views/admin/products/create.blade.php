@@ -58,9 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" id ="product-gallery">
 
-                    </div>
                     <div class="card mb-3">
                         <div class="card-body">
                             <h2 class="h4 mb-3">Pricing</h2>
@@ -161,22 +159,6 @@
 
 @section('customJs')
 <script>
-    $("#title").change(function() {
-        element = $(this);
-        $("button[type=submit]").prop('disabled', true);
-        $.ajax({
-            url: '{{route("getSlug")}}',
-            type: 'get',
-            data: {title: element.val()},
-            dataType: 'json',
-            success: function(response) {
-                $("button[type=submit]").prop('disabled', false);
-                if (response["status"] == true) {
-                    $("#slug").val(response["slug"]);
-                }
-            }
-        });
-    });
 
     $("#productForm").submit(function(event){
         event.preventDefault();
