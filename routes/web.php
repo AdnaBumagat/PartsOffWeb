@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\ProductController;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -54,6 +55,10 @@ Route::group(['prefix'=>'admin'],function(){
 
             ]);
         })->name('getSlug');
+
+        //Product Routes
+        Route::get('/products/create',[ProductController::class,'create'])->name('products.create');
+        Route::post('/products',[ProductController::class,'store'])->name('products.store');
     });
 
 });
