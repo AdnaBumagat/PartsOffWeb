@@ -9,7 +9,7 @@ use App\Models\ProductImage;
 use App\Models\Products;
 use App\Models\TempImage;
 use Illuminate\Support\Facades\Validator;
-
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -79,20 +79,18 @@ class ProductController extends Controller
                 //Generate Product Thumbnails
 
                 //Large Image
-                $manager = new ImageManager(new Driver());
                 $sourcePath = public_path().'/temp/'.$tempImageInfo->name;
                 $destPath = public_path().'/uploads/product/large/'.$tempImageInfo->name;
-                $image = $manager->read($sourcePath);
+                $image = Image::make($sourcePath);
                 $image->resize(1400,null,function($constraint){
                     $constraint->aspectRatio();
                 });
                 $image->save($destPath);
 
                 //Small Image
-                $sourcePath = public_path().'/temp/'.$tempImageInfo->name;
                 $destPath = public_path().'/uploads/product/small/'.$tempImageInfo->name;
-                $image = $manager->read($sourcePath);
-                $image->scale(300,300);
+                $image = Image::make($sourcePath);
+                $image->fit(300,300);
                 $image->save($destPath);
 
             }
