@@ -41,15 +41,12 @@
                             <div class="mb-3">
                                 <input type="hidden" id="image_id" name="image_id" value="">
                                 <label for="image">Image</label>
-                                <div id="image" class="dropzone dz-clickable">
-                                    <!-- <div class="dz-message-needsclick">
-                                        <br>Drop Files here or click to upload.<br><br>
-                                    </div> -->
+                                <div id="image" class="dropzone dz-clickable"> 
                                 </div>
                             </div>
                             @if (!@empty($category->image))
                             <div>
-                                <img width="250" src="{{ asset('uploads/category/thumb/'.$category->image) }}" alt="">
+                                <img width="250" height="250" src="{{ asset('uploads/category/thumb/'.$category->image) }}" alt="">
                             </div>
                             @endif
                         </div>
@@ -142,24 +139,6 @@
 
         })
 
-    });
-    $("#name").change(function() {
-        element = $(this);
-        $("button[type=submit]").prop('disabled', true);
-        $.ajax({
-            url: '{{route("getSlug")}}',
-            type: 'get',
-            data: {
-                title: element.val()
-            },
-            dataType: 'json',
-            success: function(response) {
-                $("button[type=submit]").prop('disabled', false);
-                if (response["status"] == true) {
-                    $("#slug").val(response["slug"]);
-                }
-            }
-        });
     });
 
     Dropzone.autoDiscover = false;

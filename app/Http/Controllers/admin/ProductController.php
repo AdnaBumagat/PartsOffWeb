@@ -59,7 +59,7 @@ class ProductController extends Controller
             $product->save();
             
     
-            $request->session()->flash('success','Product added succesfully');
+            session()->flash('success','Product added succesfully');
     
             return response()->json([
                 'status' => true,
