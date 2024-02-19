@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="{{asset('admin-assets/css/adminlte.min.css')}}">
 		<link rel="stylesheet" href="{{asset('admin-assets/css/custom.css')}}">
 		<link rel="stylesheet" href="{{asset('admin-assets/plugins/summernote/summernote.min.css')}}">
+		<link rel="stylesheet" href="{{asset('admin-assets/plugins/dropzone/min/dropzone.min.css')}}">
+
 		<meta name="csrf-token" content="{{csrf_token()}}">
 	</head>
 	<body class="hold-transition sidebar-mini">
@@ -82,6 +84,7 @@
 		<!-- AdminLTE App -->
 		<script src="{{asset('admin-assets/js/adminlte.min.js')}}"></script>
 		<script src="{{asset('admin-assets/plugins/summernote/summernote.min.js')}}"></script>
+		<script src="{{asset('admin-assets/plugins/dropzone/min/dropzone.min.js')}}"></script>
 		<!-- AdminLTE for demo purposes -->
 		<script src="{{asset('admin-assets/js/demo.js')}}"></script>
 
