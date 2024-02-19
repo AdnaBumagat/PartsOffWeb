@@ -5,7 +5,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TempImagesController;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -53,18 +53,6 @@ Route::group(['prefix'=>'admin'],function(){
 
         //temp-images.create
         Route::post('/upload-temp-image',[TempImagesController::class,'create'])->name('temp-images.create');
-
-        Route::get('/getSlug',function(Request $request){
-            $slug ='';
-            if(!empty($request->title)){
-                $slug = Str::slug($request->title);
-            }
-            return response()->json([
-                'status'=>true,
-                'slug' => $slug
-
-            ]);
-        })->name('getSlug');
 
         //Product Routes
         Route::get('products',[ProductController::class,'index'])->name('products.index');
