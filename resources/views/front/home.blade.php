@@ -106,24 +106,24 @@
 
             <!--DISPLAY CATEGORY-->
             @if (getCategories()->isNotEmpty())
-            @foreach (getCategories() as $category)
-            <div class="col-lg-3">
-                <div class="cat-card">
-                    <div class="left">
-                        @if ($category->image != "")
-                        <img src="{{asset('uploads/category/thumb/'.$category->image)}}" alt="" class="img-fluid">
-                        @endif
-                        {{-- <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid"> --}}
-                    </div>
-                    <div class="right">
-                        <div class="cat-data">
-                            <h2>{{ $category->name }}</h2>
-                            <p>100 Products</p>
+                @foreach (getCategories() as $category)
+                <div class="col-lg-3">
+                    <div class="cat-card">
+                        <div class="left">
+                            @if ($category->image != "")
+                            <img src="{{asset('uploads/category/thumb/'.$category->image)}}" alt="" class="img-fluid">
+                            @endif
+                            {{-- <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid"> --}}
+                        </div>
+                        <div class="right">
+                            <div class="cat-data">
+                                <h2>{{ $category->name }}</h2>
+                                <p>100 Products</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            @endforeach
+                @endforeach
             @endif
 
             <!--Old code in case of errors-->
@@ -161,7 +161,7 @@
                 <div class="col-md-3">
                     <div class="card product-card">
                         <div class="product-image position-relative">
-                            <a href="" class="product-img">
+                            <a href="{{route("front.product",$product->slug)}}" class="product-img">
 
                                 {{-- <img class="card-img-top" src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""> --}}
 
@@ -237,7 +237,7 @@
                 <div class="col-md-3">
                     <div class="card product-card">
                         <div class="product-image position-relative">
-                            <a href="" class="product-img">
+                            <a href="{{route("front.product",$product->slug)}}" class="product-img">
 
                                 {{-- <img class="card-img-top" src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""> --}}
 
