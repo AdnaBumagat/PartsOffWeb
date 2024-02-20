@@ -172,7 +172,6 @@
                                 @endif
 
                             </a>
-                            <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                             <div class="product-action">
                                 <a class="btn btn-dark" href="#">
@@ -184,7 +183,7 @@
                             <a class="h6 link" href="product.php">{{ $product->title }}</a>
                             <div class="price mt-2">
 
-                                <span class="h5"><strong>₱{{ $product->price }}/strong></span>
+                                <span class="h5"><strong>₱{{ $product->price }}</strong></span>
                                 {{-- @if ($product->compare_price > 0)
                                 <span class="h6 text-underline"><del>{{$product->compare_price > 0}}</del></del></span>
                                 @endif --}}
@@ -249,7 +248,6 @@
                                 @endif
 
                             </a>
-                            <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                             <div class="product-action">
                                 <a class="btn btn-dark" href="#">
@@ -261,7 +259,7 @@
                             <a class="h6 link" href="product.php">{{ $product->title }}</a>
                             <div class="price mt-2">
 
-                                <span class="h5"><strong>{{ $product->price }}/strong></span>
+                                <span class="h5"><strong>₱{{ $product->price }}</span>
                                 {{-- @if ($product->compare_price > 0)
                                 <span class="h6 text-underline"><del>{{$product->compare_price > 0}}</del></del></span>
                                 @endif --}}
