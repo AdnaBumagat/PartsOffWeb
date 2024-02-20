@@ -97,6 +97,7 @@
                                     <div class="mb-3">
                                         <input type="number" min="0" name="qty" id="qty" class="form-control" placeholder="Qty">
                                     </div>
+                                    <p class="error"></p>
                                 </div>
                             </div>
                         </div>
@@ -127,8 +128,8 @@
                                     <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                 @endif
-
                                 </select>
+                                <p class="error"></p>
                             </div>
                         </div>
                     </div>
@@ -140,6 +141,7 @@
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select>
+                                <p class="error"></p>
                             </div>
                         </div>
                     </div>
