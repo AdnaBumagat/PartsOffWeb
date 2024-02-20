@@ -20,6 +20,7 @@ class CategoryFactory extends Factory
             'name' => fake()->name(),
             'status' => rand(0,1),
             'slug' => fake()->name(),
+            'showHome' => $this->faker->randomElement(['Yes', 'No']),
             'image'=> $this->faker->numberBetween(1,6).'.jpg'
         ];
     }
