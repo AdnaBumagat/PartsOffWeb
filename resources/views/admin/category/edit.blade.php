@@ -23,6 +23,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
+                        <!--Edit name-->
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="name">Name</label>
@@ -30,6 +31,7 @@
                                 <p></p>
                             </div>
                         </div>
+                        <!--Edit slug-->
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="slug">Slug</label>
@@ -37,11 +39,12 @@
                                 <p></p>
                             </div>
                         </div>
+                        <!--Edit image-->
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <input type="hidden" id="image_id" name="image_id" value="">
                                 <label for="image">Image</label>
-                                <div id="image" class="dropzone dz-clickable"> 
+                                <div id="image" class="dropzone dz-clickable">
                                 </div>
                             </div>
                             @if (!@empty($category->image))
@@ -50,12 +53,23 @@
                             </div>
                             @endif
                         </div>
+                        <!--Edit status-->
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="status">Status</label>
                                 <select name="status" id="status" class="form-control">
                                     <option {{ ($category->status == 1) ? 'selected' : '' }} value="1">Active</option>
                                     <option {{ ($category->status == 0) ? 'selected' : '' }} value="0">Block</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--Edit show on home-->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="showHome">Show on home</label>
+                                <select name="showHome" id="showHome" class="form-control">
+                                    <option {{ ($category->showHome == 'Yes') ? 'selected' : '' }} value="Yes">Yes</option>
+                                    <option {{ ($category->showHome == 'No') ? 'selected' : '' }} value="No">No</option>
                                 </select>
                             </div>
                         </div>

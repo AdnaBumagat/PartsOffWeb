@@ -47,6 +47,7 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->status = $request->status;
+            $category->showHome = $request->showHome;
             $category->save();
 
             // Save Image Here
@@ -122,6 +123,7 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->status = $request->status;
+            $category->showHome = $request->showHome;
             $category->save();
 
             $oldImage = $category->image;
@@ -140,7 +142,7 @@ class CategoryController extends Controller
                 //Generate Image Thumbnail
                 $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
                 $img = Image::make($sPath);
-                $img->resize(250, 250); 
+                $img->resize(250, 250);
                 $img->save($dPath);
 
                 $category->image = $newImageName;
