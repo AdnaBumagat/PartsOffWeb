@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
+
+    //* GET all products
     public function index()
     {
-
+        //* Get products
         $products = Product::where('is_featured', 'Yes')
             ->orderBy('id', 'DESC')
             ->take(8)
@@ -23,7 +25,7 @@ class FrontController extends Controller
             ->take(8)
             ->get();
 
-            $data['latestProducts']= $latestProducts;
+        $data['latestProducts']= $latestProducts;
 
         return view('front.home', $data);
     }
