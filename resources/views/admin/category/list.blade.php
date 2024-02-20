@@ -109,7 +109,7 @@
 <script>
     function deleteCategory(id){
 
-        var url = '{{ route("categories.delete", "ID") }}';
+        var url = '{{ route("products.delete", "ID") }}';
         var newUrl = url.replace("ID", id)
 
         if(confirm("Are you sure you want to delete?")){
