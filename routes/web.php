@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductImageController;
 use App\Http\Controllers\admin\TempImagesController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FrontController;
 use App\Models\Product;
 use App\Http\Controllers\ShopController;
@@ -36,6 +37,9 @@ Route::get('/product/{slug}',[ShopController::class,'product'])->name('front.pro
 
 //*ADMIN ROUTES
 Route::get('/admin/login',[AdminLoginController::class,'index'])->name('admin.login');
+
+Route::get('/register', [AuthController::class,'register'])->name('account.register');
+Route::post('/process-register', [AuthController::class,'processRegister'])->name('account.processRegister');
 
 Route::group(['prefix'=>'admin'],function(){
     Route::group(['middleware'=>'admin.guest'],function(){
