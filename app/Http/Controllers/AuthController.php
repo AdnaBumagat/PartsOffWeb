@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     public function processRegister(Request $request){
 
-        $validator = Validator::make($request->all().[
+        $validator = Validator::make($request->all(),[
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:5'
