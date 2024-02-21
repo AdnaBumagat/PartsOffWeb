@@ -28,7 +28,7 @@
                             @if ($categories -> isNotEmpty())
 
                             @foreach ($categories as $category)
-                            <a href="#" class="nav-time nav-link">{{ $category->name }}</a>
+                            <a href="{{ route("front.shop", $category->slug) }}" class="nav-time nav-link">{{ $category->name }}</a>
                             @endforeach
 
                             @endif
