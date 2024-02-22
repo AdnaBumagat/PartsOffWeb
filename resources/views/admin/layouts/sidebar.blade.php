@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color:#6b21a8">
 				<!-- Brand Logo -->
 				<a href="#" class="brand-link">
 					<span class="brand-text font-weight-light">PARTS OFF</span>
@@ -31,26 +31,26 @@
 							</li>
 
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="" class="nav-link">
 									<!-- <i class="nav-icon fas fa-tag"></i> -->
 									<i class="fas fa-truck nav-icon"></i>
 									<p>Shipping</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="orders.html" class="nav-link">
+								<a href="" class="nav-link">
 									<i class="nav-icon fas fa-shopping-bag"></i>
 									<p>Orders</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="users.html" class="nav-link">
+								<a href="" class="nav-link">
 									<i class="nav-icon  fas fa-users"></i>
 									<p>Users</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="pages.html" class="nav-link">
+								<a href="" class="nav-link">
 									<i class="nav-icon  far fa-file-alt"></i>
 									<p>Pages</p>
 								</a>

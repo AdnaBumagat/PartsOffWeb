@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Parts Off</title>
+    <title>Parts OFF</title>
     <meta name="description" content="" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no" />
@@ -50,18 +50,18 @@
 
 <body data-instant-intensity="mousedown">
 
-    <div class="bg-light top-header">
+    <div class="top-header" style="background-color:#6b21a8">
         <div class="container">
             <div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
                 <div class="col-lg-4 logo">
-                    <a href="index.php" class="text-decoration-none">
+                    <a href="{{Route('front.home')}}" class="text-decoration-none">
                         <span class="h1 text-uppercase text-primary bg-dark px-2">Parts</span>
                         <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">OFF</span>
                     </a>
                 </div>
                 <div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
-                    <a href="account.php" class="nav-link text-dark">My Account</a>
-                    <form action="">
+                    <a href="{{Route('account.login')}}" class="nav-link text-dark">My Account</a>
+                    {{-- <form action="">
                         <div class="input-group">
                             <input type="text" placeholder="Search For Products" class="form-control"
                                 aria-label="Amount (to the nearest dollar)">
@@ -69,7 +69,7 @@
                                 <i class="fa fa-search"></i>
                             </span>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>
@@ -121,11 +121,11 @@
 
                     </ul>
                 </div>
-                <div class="right-nav py-0">
+                {{-- <div class="right-nav py-0">
                     <a href="cart.php" class="ml-3 d-flex pt-2">
                         <i class="fas fa-shopping-cart text-primary"></i>
                     </a>
-                </div>
+                </div> --}}
             </nav>
         </div>
     </header>
@@ -134,50 +134,50 @@
         @yield('content')
     </main>
 
-    <footer class="bg-dark mt-5">
+    <footer class="mt-5" style="background-color:#6b21a8">
         <div class="container pb-5 pt-3">
             <div class="row">
                 <div class="col-md-4">
                     <div class="footer-card">
-                        <h3>Get In Touch</h3>
-                        <p>No dolore ipsum accusam no lorem. <br>
-                            123 Street, New York, USA <br>
-                            exampl@example.com <br>
-                            000 000 0000</p>
+                        <h3><i class="fas fa-info-circle"></i> About Us</h3>
+                        <p>Parts OFF is your go-to website to sell or buy<br>
+                            second hand computer parts or accessories. We<br>
+                            offer good service and quality products. We are<br>
+                            sure you can find what you are looking for!<br>
+                        </p>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="footer-card">
-                        <h3>Important Links</h3>
+                        <h3><i class="fas fa-phone-square"></i> Contact Us</h3>
                         <ul>
-                            <li><a href="about-us.php" title="About">About</a></li>
-                            <li><a href="contact-us.php" title="Contact Us">Contact Us</a></li>
-                            <li><a href="#" title="Privacy">Privacy</a></li>
-                            <li><a href="#" title="Privacy">Terms & Conditions</a></li>
-                            <li><a href="#" title="Privacy">Refund Policy</a></li>
+                            <li><i class="far fa-envelope"></i> PartsOff@business.com</li>
+                            <li><i class="fas fa-phone"></i> 09156612352</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Arellano Street, Dagupan City</li>
+                            <li>Pangasinan</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="footer-card">
-                        <h3>My Account</h3>
+                        <h3><i class="fas fa-link"></i> Follow Us Here</h3>
                         <ul>
-                            <li><a href="#" title="Sell">Login</a></li>
-                            <li><a href="#" title="Advertise">Register</a></li>
-                            <li><a href="#" title="Contact Us">My Orders</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="copyright-area">
+        <div class="bg-dark copyright-area">
             <div class="container">
                 <div class="row">
                     <div class="col-12 mt-3">
                         <div class="copy-right text-center">
-                            <p>© Copyright 2022 Amazing Shop. All Rights Reserved</p>
+                            <a href="{{Route('admin.login')}}"><p>© Copyright 2024 Parts OFF. All Rights Reserved</p></a>
                         </div>
                     </div>
                 </div>
