@@ -32,22 +32,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontController::class, 'index'])->name('front.home');
 Route::get('/shop', [ShopController::class, 'index'])->name('front.shop');
 Route::get('/product/{slug}',[ShopController::class,'product'])->name('front.product');
-Route::get('/register', [AuthController::class,'register'])->name('account.register');
-Route::post('/process-register', [AuthController::class, 'processRegister'])->name('account.processRegister');
+Route::group(['prefix'=>'account'],function(){
+    Route::group(['middleware'=>'guest'],function(){
+        
+        Route::get('/login', [AuthController::class,'login'])->name('account.login');
+        Route::get('/register', [AuthController::class,'register'])->name('account.register');
+        Route::post('/process-register', [AuthController::class, 'processRegister'])->name('account.processRegister');
+    });
+
+    Route::group(['middleware'=>'Auth'],function(){
+
+    });
 
 
+});
 //*ADMIN ROUTES
 Route::get('/admin/login',[AdminLoginController::class,'index'])->name('admin.login');
-
-
-
-
 Route::group(['prefix'=>'admin'],function(){
-    Route::group(['middleware'=>'admin.guest'],function(){
+Route::group(['middleware'=>'admin.guest'],function(){
 
-        Route::get('/login',[AdminLoginController::class,'index'])->name('admin.login');
-        Route::post('/authenticate',[AdminLoginController::class,'authenticate'])->name('admin.authenticate');
-    });
+Route::get('/login',[AdminLoginController::class,'index'])->name('admin.login');
+Route::post('/authenticate',[AdminLoginController::class,'authenticate'])->name('admin.authenticate');
+});
 
     Route::group(['middleware'=>'admin.auth'],function(){
 
