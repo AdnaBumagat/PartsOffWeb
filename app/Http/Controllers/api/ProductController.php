@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,30 +14,17 @@ use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
-
     //* Product Index
     public function index(Request $request)
     {
 
-        $products = Product::latest('id')->with('product_images');
+        $products = Product::with('product_images')->get();
 
-        if ($request->get('keyword') != "") {
-            $products = $products->where('title', 'like', '%' . $request->keyword . '%');
-        }
-        $products = $products->paginate();
         $data['products'] = $products;
-        return view('admin.products.list', $data);
+        return response()->json($data);
     }
 
     //* Create product
-    public function create()
-    {
-        $data = [];
-        $categories = Category::orderBy('name', 'ASC')->get();
-        $data['categories'] = $categories;
-        return view('admin.products.create', $data);
-    }
-
     public function store(Request $request)
     {
 
@@ -69,8 +56,6 @@ class ProductController extends Controller
             $product->status = $request->status;
             $product->category_id = $request->category;
             $product->is_featured = $request->is_featured;
-            $product->product_detail = $request->product_detail;
-            
             $product->save();
 
             //Save Gallery Pics
@@ -101,7 +86,6 @@ class ProductController extends Controller
                     });
                     $image->save($destPath);
 
-
                     //Small Image
                     $destPath = public_path() . '/uploads/product/small/' . $imageName;
                     $image = Image::make($sourcePath);
@@ -109,9 +93,6 @@ class ProductController extends Controller
                     $image->save($destPath);
                 }
             }
-
-
-            session()->flash('success', 'Product added succesfully');
 
             return response()->json([
                 'status' => true,
@@ -124,29 +105,6 @@ class ProductController extends Controller
             ]);
         }
     }
-
-    //* Product Edit
-    public function edit($id, Request $request)
-    {
-
-        $product = Product::find($id);
-
-        if (empty($product)) {
-            return redirect()->route('products.index')->with('error', 'Product not found');
-        }
-
-        //Fetch product Images
-        $productImages = ProductImage::where('product_id', $product->id)->get();
-
-        $data = [];
-        $data['product'] = $product;
-        $categories = Category::orderBy('name', 'ASC')->get();
-        $data['categories'] = $categories;
-        $data['productImages'] = $productImages;
-
-        return view('admin.products.edit', $data);
-    }
-
 
     //* Product Update
     public function update($id, Request $request)
@@ -181,7 +139,6 @@ class ProductController extends Controller
             $product->status = $request->status;
             $product->category_id = $request->category;
             $product->is_featured = $request->is_featured;
-            $product->product_detail = $request->product_detail;
             $product->save();
 
             //Save Gallery Pics
@@ -223,8 +180,6 @@ class ProductController extends Controller
         }
 
         $product->delete();
-
-        session()->flash('success', 'product deleted succesfully');
 
         if (empty($product)) {
             return response()->json([

@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminLoginController extends Controller
 {
+    //*
     public function index(){
         return view('admin.login');
     }
 
+    //*
     public function authenticate(Request $request){
 
         $validator = Validator::make($request->all(),[
@@ -39,7 +41,7 @@ class AdminLoginController extends Controller
             }else{
                 return redirect()->route('admin.login')->with('error','Either Email/Password is incorrect');
             }
-            
+
         }else{
             return redirect()->route('admin.login')
             ->withErrors($validator)
@@ -47,5 +49,5 @@ class AdminLoginController extends Controller
         }
     }
 
-    
+
 }
