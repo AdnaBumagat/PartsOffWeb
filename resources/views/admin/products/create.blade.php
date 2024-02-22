@@ -41,8 +41,16 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
+                                        <label for="product_detail">Product Detail</label>
+                                        <textarea name="description" id="product_detail" cols="30" rows="10" class="summernote" 
+                                        placeholder="product_detail"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
                                         <label for="description">Description</label>
-                                        <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Description"></textarea>
+                                        <textarea name="description" id="description" cols="30" rows="10" class="summernote" 
+                                        placeholder="Description"></textarea>
                                     </div>
                                 </div>
                             </div>

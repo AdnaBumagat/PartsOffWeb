@@ -43,6 +43,13 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
+                                        <label for="product_detail">Product Detail</label>
+                                        <textarea name="product_detail" id="product_detail" cols="30" rows="10" class="summernote" 
+                                        placeholder="Product Detail" value="{{$product->product_detail}}"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
                                         <label for="description">Description</label>
                                         <textarea name="description" id="description" cols="30" rows="10" class="summernote" 
                                         placeholder="Description" value="{{$product->description}}"></textarea>

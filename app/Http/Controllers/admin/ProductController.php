@@ -69,6 +69,8 @@ class ProductController extends Controller
             $product->status = $request->status;
             $product->category_id = $request->category;
             $product->is_featured = $request->is_featured;
+            $product->product_detail = $request->product_detail;
+            
             $product->save();
 
             //Save Gallery Pics
@@ -179,6 +181,7 @@ class ProductController extends Controller
             $product->status = $request->status;
             $product->category_id = $request->category;
             $product->is_featured = $request->is_featured;
+            $product->product_detail = $request->product_detail;
             $product->save();
 
             //Save Gallery Pics
