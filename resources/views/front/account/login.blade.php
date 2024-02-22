@@ -23,7 +23,7 @@
         <div class="alert alert-danger">
             {{ Session::get('error') }}
         </div>
-    @endif
+        @endif
         <div class="login-form">
             <form action="{{ route('account.authenticate') }}" method="post">
                 @csrf

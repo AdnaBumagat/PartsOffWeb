@@ -40,10 +40,12 @@ Route::get('/product/{slug}',[ShopController::class,'product'])->name('front.pro
 
         Route::get('/register', [AuthController::class,'register'])->name('account.register');
         Route::post('/process-register', [AuthController::class, 'processRegister'])->name('account.processRegister');
+        
     });
 
-    Route::group(['middleware'=>'Auth'],function(){
+    Route::group(['middleware'=>'auth'],function(){
         Route::get('/profile', [AuthController::class,'profile'])->name('account.profile');
+        Route::get('/logout', [AuthController::class,'logout'])->name('account.logout');
     });
 
 
