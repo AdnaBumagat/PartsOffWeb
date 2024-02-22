@@ -32,16 +32,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontController::class, 'index'])->name('front.home');
 Route::get('/shop', [ShopController::class, 'index'])->name('front.shop');
 Route::get('/product/{slug}',[ShopController::class,'product'])->name('front.product');
-Route::group(['prefix'=>'account'],function(){
-    Route::group(['middleware'=>'guest'],function(){
 
+    Route::group(['prefix'=>'account'],function(){
+        Route::group(['middleware'=>'guest'],function(){
         Route::get('/login', [AuthController::class,'login'])->name('account.login');
+        Route::post('/login', [AuthController::class,'authenticate'])->name('account.authenticate');
+
         Route::get('/register', [AuthController::class,'register'])->name('account.register');
         Route::post('/process-register', [AuthController::class, 'processRegister'])->name('account.processRegister');
     });
 
     Route::group(['middleware'=>'Auth'],function(){
-
+        Route::get('/profile', [AuthController::class,'profile'])->name('account.profile');
     });
 
 
