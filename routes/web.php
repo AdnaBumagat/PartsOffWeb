@@ -45,7 +45,7 @@ Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('front.a
 
         Route::get('/register', [AuthController::class,'register'])->name('account.register');
         Route::post('/process-register', [AuthController::class, 'processRegister'])->name('account.processRegister');
-        
+
     });
 
     Route::group(['middleware'=>'auth'],function(){
