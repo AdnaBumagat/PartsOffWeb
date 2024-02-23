@@ -101,9 +101,9 @@
                         @if (getCategories()->isNotEmpty())
                             @foreach (getCategories() as $category)
                                 <li class="nav-item">
-                                    <button class="btn btn-dark" aria-expanded="false">
+                                    <a href = "{{route("front.shop",$category->slug)}}"><button class="btn btn-dark" aria-expanded="false">
                                         {{ $category->name }}
-                                    </button>
+                                    </button></a>
                                 </li>
                                 <!-- old category block incase of sub category implementation -->
                                 {{-- <li class="nav-item dropdown">
@@ -234,6 +234,7 @@
             });
         }
     </script>
+
 </body>
 
 </html>

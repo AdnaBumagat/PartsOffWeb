@@ -28,7 +28,7 @@
                             @if ($categories -> isNotEmpty())
 
                             @foreach ($categories as $category)
-                            <a href="#" class="nav-time nav-link">{{ $category->name }}</a>
+                            <a href="{{route("front.shop",$category->slug)}}" class="nav-time nav-link">{{ $category->name }}</a>
                             @endforeach
 
                             @endif
@@ -76,14 +76,14 @@
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-end mb-4">
                             <div class="ml-2">
-                                <div class="btn-group">
+                                {{-- <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown">Sorting</button>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#">Latest</a>
                                         <a class="dropdown-item" href="#">Price High</a>
                                         <a class="dropdown-item" href="#">Price Low</a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,8 @@
                     @endif
 
                     <div class="col-md-12 pt-5">
-                        <nav aria-label="Page navigation example">
+                        {{ $products->withQueryString()->links()}}
+                        {{-- <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-end">
                                 <li class="page-item disabled">
                                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -141,7 +142,7 @@
                                 <a class="page-link" href="#">Next</a>
                                 </li>
                             </ul>
-                        </nav>
+                        </nav> --}}
                     </div>
                 </div>
             </div>

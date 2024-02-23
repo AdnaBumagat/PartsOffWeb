@@ -10,20 +10,30 @@ class ShopController extends Controller
 {
 
     //* GET categories and products
-    public function index()
+    public function index(Request $request, $categorySlug = null)
     {
+        $categorySelected = "";
 
         //* GET categories, order by name, ascending, and status = 1
-        $categories = Category::orderBy('name', 'ASC')
-            ->where('status', 1)
-            ->get();
-        //* GET products, order by name, descending, status = 1
-        $products = Product::orderBy('id', 'DESC')
-            ->where('status', 1)
-            ->get();
+        $categories = Category::orderBy('name', 'ASC')->where('status', 1)->get();
+        $products = Product::where('status',1);
+        
+        //Apply Filters here
+        if(!empty($categorySlug)){
+            $category = Category::where('slug',$categorySlug)->first();
+            $products = $products->where('category_id',$category->id);
+            $categorySelected = $category->id;
+        }
+        
+
+        $products = $products->orderBy('id', 'DESC');
+        
+        
+        $products = $products->paginate(9);
 
         $data['categories'] = $categories;
         $data['products'] = $products;
+        $data['categorySelected'] = $categorySelected;
 
         return view('front.shop', $data);
     }
