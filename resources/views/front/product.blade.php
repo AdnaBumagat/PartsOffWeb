@@ -45,7 +45,7 @@
                     <h2 class="price ">₱{{$product->price}}</h2>
 
                     <div>{!!$product->product_detail!!}<div>
-                    <a href="cart.php" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> &nbsp;ADD TO CART</a>
+                    <a href="javascript:void(0)" onclick="addToCart({{$product->id}});" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> &nbsp;ADD TO CART</a>
                 </div>
             </div>    
         </div>
@@ -69,6 +69,4 @@
         </div>   
     </div>
 </section>
-
-
 @endsection
