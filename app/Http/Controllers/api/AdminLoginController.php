@@ -5,10 +5,14 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AdminLoginController extends Controller
 {
+
+    //* Login function
     public function login(Request $request)
     {
 
@@ -29,19 +33,57 @@ class AdminLoginController extends Controller
                         'message' => 'admin login successful'
                     ]);
                 } else {
-                    // Auth::guard('admin')->logout();
-                    // return redirect()->route('admin.login')->with('error', 'You are not authorized to access to acess admin panel');
                     return response()->json([
                         'message' => 'You are not authorized to access to acess admin panel'
                     ]);
                 }
 
-        //         return redirect()->route('admin.dashboard');
-        //     } else {
-        //         return redirect()->route('admin.login')->with('error', 'Either Email/Password is incorrect');
+            } else {
+                return response()->json([
+                    'message' => 'Email or password is incorrect.'
+                ]);
             }
+
         } else {
             return response()->json([
+                'errors' => $validator->errors()
+            ]);
+        }
+    }
+
+    //*
+    public function logout() {
+        Auth::logout();
+        return response()->json([
+            'message' => 'Successfully logged out.'
+        ]);
+    }
+
+    //* User Registration
+    public function processRegister(Request $request){
+
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:5|confirmed'
+        ]);
+
+        if ($validator->passes()) {
+
+            $user = new User;
+            $user -> name = $request->name;
+            $user -> email = $request->email;
+            $user -> phone = $request->phone;
+            $user -> password = Hash::make($request->password);
+            $user->save();
+
+            return response()->json([
+                'status' => true,
+            ]);
+
+        } else {
+            return response()->json([
+                'status' => false,
                 'errors' => $validator->errors()
             ]);
         }
