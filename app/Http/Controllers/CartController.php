@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -126,5 +128,33 @@ class CartController extends Controller
         ]);
 
     }
+
+    public function checkout(Request $request){
+
+        //-- if cart is empty redirect to cart page
+        if(Cart::count() == 0){
+            return redirect()->route('front.cart');
+        }
+
+        //if user is not logged in then redirect to login page
+        if(Auth::check() == false){
+
+            if(!session()->has('url.intended')){
+                session(['url.intended' => url()->current()]);
+
+            }
+            
+            return redirect()->route('account.login');
+        }
+
+        session()->forget('url.intended');
+
+        $provinces = Province::orderBy('name','ASC')->get();
+
+        return view('front.checkout',[
+            'provinces' => $provinces
+        ]);
+    }
+
 
 }
