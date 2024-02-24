@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\api\AdminLoginController;
+use App\Http\Controllers\api\AuthenticationController;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\CategoryController;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //*
-Route::get('/admin/login',[AdminLoginController::class,'login']);
+Route::get('/admin/login',[AuthenticationController::class,'login']);
 
 //* Product api
 Route::get('/products',[ProductController::class,'index']);

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class AdminLoginController extends Controller
+class AuthenticationController extends Controller
 {
 
     //* Login function
