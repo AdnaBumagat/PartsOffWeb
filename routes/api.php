@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\AuthenticationController;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\CategoryController;
+use App\Http\Controllers\api\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//*
+//* Authentication
 Route::get('/admin/login',[AuthenticationController::class,'login']);
 
 //* Product api
@@ -35,3 +36,9 @@ Route::get('/categories',[CategoryController::class,'index']);
 Route::post('/categories/store',[CategoryController::class,'store']);
 Route::put('/categories/update/{categoryID}',[CategoryController::class,'update']);
 Route::delete('/categories/destroy/{categoryID}',[CategoryController::class,'destroy']);
+
+//* Cart api
+Route::get('/cart', [CartController::class, 'cart']);
+Route::get('/add-to-cart', [CartController::class, 'addToCart']);
+Route::get('/update-cart', [CartController::class, 'updateCart']);
+Route::get('/delete-item', [CartController::class, 'deleteItem']);
