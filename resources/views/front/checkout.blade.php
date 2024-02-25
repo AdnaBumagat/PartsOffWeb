@@ -127,10 +127,10 @@
                                 <div class="h6"><strong>Subtotal</strong></div>
                                 <div class="h6"><strong>₱{{Cart::subtotal()}}</strong></div>
                             </div>
-                            <div class="d-flex justify-content-between mt-2">
+                            {{-- <div class="d-flex justify-content-between mt-2">
                                 <div class="h6"><strong>Shipping</strong></div>
                                 <div class="h6"><strong>₱0</strong></div>
-                            </div>
+                            </div> --}}
                             <div class="d-flex justify-content-between mt-2 summery-end">
                                 <div class="h5"><strong>Total</strong></div>
                                 <div class="h5"><strong>₱{{Cart::subtotal()}}</strong></div>
