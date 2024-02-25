@@ -40,9 +40,6 @@
                         <p class="invalid-feedback">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="form-group small">
-                    <a href="#" class="forgot-link">Forgot Password?</a>
-                </div>
                 <input type="submit" class="btn btn-dark btn-block btn-lg" value="Login">
             </form>
             <div class="text-center small">Don't have an account? <a href="{{route('account.register')}}">Sign up</a></div>

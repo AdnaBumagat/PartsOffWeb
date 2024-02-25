@@ -174,7 +174,7 @@ class CartController extends Controller
             'last_name' => 'required',
             'email' => 'required|email',
             'province' => 'required',
-            'address' => 'required|min:30',
+            'address' => 'required|min:5',
             'city' => 'required',
             'barangay' => 'required',
             'zip' => 'required',

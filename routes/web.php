@@ -61,6 +61,8 @@ Route::get('/thanks/{orderId}', [CartController::class, 'thankyou'])->name('fron
         Route::get('/my-orders', [AuthController::class,'orders'])->name('account.orders');
         Route::get('/order-detail/{orderId}', [AuthController::class,'orderDetail'])->name('account.orderDetail');
         Route::get('/logout', [AuthController::class,'logout'])->name('account.logout');
+        Route::get('/change-password', [AuthController::class,'showChangePasswordForm'])->name('account.changePassword');
+        Route::post('/process-change-password', [AuthController::class,'changePassword'])->name('account.processChangePassword');
     });
 
 

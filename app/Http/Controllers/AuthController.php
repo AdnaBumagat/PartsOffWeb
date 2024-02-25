@@ -155,8 +155,47 @@ class AuthController extends Controller
         return view('front.account.order-detail',$data);
     }
 
-    public function changePassword(){
+    public function showchangePasswordForm(){
         return view('front.account.change-password');
 
     }
+
+    public function changePassword(Request $request){
+        $valdidator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'new_password' => 'required|min:5',
+            'confirm_password' => 'required|same:new_password'
+
+        ]);
+        if($valdidator->passes()){
+
+            $user = User::select('id','password')->where('id',Auth::user()->id)->first();
+
+            if(!Hash::check($request->old_password, $user->password)){
+                session()->flash('error','Your old password is incorrect, please write again.');
+                
+                return response()->json([
+                    'status' =>true,
+                ]);
+
+            }
+
+            User::where('id',$user->id)->update([
+                'password' => Hash::make($request->new_password),
+            ]);
+
+            session()->flash('success','You have successfully change your password.');
+                
+                return response()->json([
+                    'status' =>true,
+                ]);
+
+        }else{
+            return response()->json([
+                'status' =>false,
+                'errors' =>$valdidator->errors()
+            ]);
+        }   
+    }
+
 }
