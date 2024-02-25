@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Province;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -83,7 +84,44 @@ class AuthController extends Controller
     }
 
     public function profile() {
-        return view('front.account.profile');
+
+        $provinces =Province::orderBy('name','ASC')->get();
+
+        $user = User::where('id',Auth::user()->id)->first();
+        return view('front.account.profile',[
+            'user'=> $user,
+            'provinces' => $provinces
+        ]);
+    }
+
+    public function updateProfile(Request $request) {
+        $userId = Auth::user()->id;
+        $validator = Validator::make($request->all(),[
+            'name'=>'required',
+            'email' => 'required|email|unique:users,email,'.$userId.',id',
+            'phone'=> 'required'
+        ]);
+
+        if($validator->passes()) {
+            $user = User::find($userId);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->save();
+
+            session()->flash('success','profile Updated successfully');
+
+            return response()->json([
+                'status' => true,
+                'message'=> 'profile Updated successfully'
+            ]);
+        
+        }else
+            return response()->json([
+                'status' => false,
+                'error'=> $validator->errors()
+            ]);
+
     }
 
     public function logout() {
@@ -115,5 +153,10 @@ class AuthController extends Controller
         $data['orderItemsCount'] = $orderItemsCount;
 
         return view('front.account.order-detail',$data);
+    }
+
+    public function changePassword(){
+        return view('front.account.change-password');
+
     }
 }

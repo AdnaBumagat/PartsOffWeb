@@ -180,7 +180,7 @@
 </section>
 <script src="{{ asset('front-assets/js/jquery-3.6.0.min.js') }}"></script>
 <script>
-    $("payment_method_one").click(function(){
+    $("#payment_method_one").click(function(){
         if($(this).is(":checked") == true){
             $("#card-payment-form").addClass('d-none');
         }

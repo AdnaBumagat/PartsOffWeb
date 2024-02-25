@@ -57,6 +57,7 @@ Route::get('/thanks/{orderId}', [CartController::class, 'thankyou'])->name('fron
 
     Route::group(['middleware'=>'auth'],function(){
         Route::get('/profile', [AuthController::class,'profile'])->name('account.profile');
+        Route::post('/update-profile', [AuthController::class,'updateProfile'])->name('account.updateProfile');
         Route::get('/my-orders', [AuthController::class,'orders'])->name('account.orders');
         Route::get('/order-detail/{orderId}', [AuthController::class,'orderDetail'])->name('account.orderDetail');
         Route::get('/logout', [AuthController::class,'logout'])->name('account.logout');
