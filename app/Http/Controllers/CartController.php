@@ -253,7 +253,7 @@ class CartController extends Controller
                 $productData =  Product::find($item->id);
                 if($productData->track_qty =='Yes'){
                     $currentQty = $productData->qty;
-                    $updatedQty = $currentQty->$item->qty;
+                    $updatedQty = $currentQty - $item->qty;
                     $productData->qty = $updatedQty;
                     $productData->save();
 

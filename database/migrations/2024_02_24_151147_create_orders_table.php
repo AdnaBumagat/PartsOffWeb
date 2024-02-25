@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->double('subtotal',10,2);
-            $table->double('shipping',10,2);
             $table->double('grand_total',10,2);
 
             //User Adderess related columns
