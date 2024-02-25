@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductImageController;
+use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\TempImagesController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\AuthController;
@@ -89,6 +90,17 @@ Route::post('/authenticate',[AdminLoginController::class,'authenticate'])->name(
         Route::put('/categories/{categories}',[CategoryController::class,'update'])->name('categories.update');
         Route::delete('/categories/{categories}',[CategoryController::class,'destroy'])->name('categories.delete');
 
+        //Product Routes
+        Route::get('/products',[ProductController::class,'index'])->name('products.index');
+        Route::get('/products/create',[ProductController::class,'create'])->name('products.create');
+        Route::post('/products',[ProductController::class,'store'])->name('products.store');
+        Route::get('/products/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
+        Route::put('/products/{product}',[ProductController::class,'update'])->name('products.update');
+        Route::delete('/products/{product}',[ProductController::class,'destroy'])->name('products.delete');
+
+        Route::post('/product-images/update',[ProductImageController::class,'update'])->name('product-images.update');
+        Route::delete('/product-images',[ProductImageController::class,'destroy'])->name('product-images.destroy');
+
         //Order Route
         Route::get('/orders',[OrderController::class,'index'])->name('orders.index');
         Route::get('/orders/{id}',[OrderController::class,'detail'])->name('orders.detail');
@@ -106,16 +118,10 @@ Route::post('/authenticate',[AdminLoginController::class,'authenticate'])->name(
         //temp-images.create
         Route::post('/upload-temp-image',[TempImagesController::class,'create'])->name('temp-images.create');
 
-        //Product Routes
-        Route::get('/products',[ProductController::class,'index'])->name('products.index');
-        Route::get('/products/create',[ProductController::class,'create'])->name('products.create');
-        Route::post('/products',[ProductController::class,'store'])->name('products.store');
-        Route::get('/products/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
-        Route::put('/products/{product}',[ProductController::class,'update'])->name('products.update');
-        Route::delete('/products/{product}',[ProductController::class,'destroy'])->name('products.delete');
+        //Admin Setting
+        Route::get('/change-password',[SettingController::class,'showChangePasswordForm'])->name('admin.showChangePasswordForm');
+        Route::post('/process-change-password',[SettingController::class,'processChangePassword'])->name('admin.processChangePassword');
 
-        Route::post('/product-images/update',[ProductImageController::class,'update'])->name('product-images.update');
-        Route::delete('/product-images',[ProductImageController::class,'destroy'])->name('product-images.destroy');
     });
 
 });
