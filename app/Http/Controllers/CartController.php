@@ -220,8 +220,10 @@ class CartController extends Controller
             
             $order =new Order;
             $order->subtotal = $subTotal;
-            $order->shipping = $shipping;
+            // $order->shipping = $shipping;
             $order->grand_total = $grandTotal;
+            $order->payment_status = 'not paid';
+            $order->status = 'pending';
             $order->user_id = $user->id;
 
             $order->first_name = $request->first_name;

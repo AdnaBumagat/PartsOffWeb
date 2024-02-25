@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -87,5 +90,27 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('account.login')
         ->with('success', 'You successfully logged out.');
+    }
+
+    public function orders(){
+        $data = [];
+        $user =Auth::user();
+
+        $orders = Order::where('user_id',$user->id)->orderBy('created_at','DESC')->get();
+
+        $data['orders'] = $orders;
+        return view('front.account.order',$data);
+    }
+
+    public function orderDetail($id) {
+        $data = [];
+        $user =Auth::user();
+        $orders = Order::where('user_id',$user->id)->where('id',$id)->first();
+        $data['order'] = $orders;
+        
+        $orderItems = OrderItem::where('order_id',$id)->get();
+        $data['orderItems'] = $orderItems;
+
+        return view('front.account.order-detail',$data);
     }
 }
