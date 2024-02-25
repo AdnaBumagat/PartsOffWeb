@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductImageController;
 use App\Http\Controllers\admin\TempImagesController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontController;
@@ -89,6 +90,15 @@ Route::post('/authenticate',[AdminLoginController::class,'authenticate'])->name(
         Route::get('/orders',[OrderController::class,'index'])->name('orders.index');
         Route::get('/orders/{id}',[OrderController::class,'detail'])->name('orders.detail');
         Route::post('/orders/change-status/{id}',[OrderController::class,'changeOrderStatus'])->name('orders.changeOrderStatus');
+
+
+        //User Route
+        Route::get('/users',[UserController::class,'index'])->name('users.index');
+        Route::get('/users/create',[UserController::class,'create'])->name('users.create');
+        Route::post('/users',[UserController::class,'store'])->name('users.store');
+        // Route::get('/categories/{categories}/edit',[CategoryController::class,'edit'])->name('categories.edit');
+        // Route::put('/categories/{categories}',[CategoryController::class,'update'])->name('categories.update');
+        // Route::delete('/categories/{categories}',[CategoryController::class,'destroy'])->name('categories.delete');
 
         //temp-images.create
         Route::post('/upload-temp-image',[TempImagesController::class,'create'])->name('temp-images.create');
