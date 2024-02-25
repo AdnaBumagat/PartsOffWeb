@@ -46,6 +46,8 @@
 
     <!-- Fav Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="#" />
+
+    <meta name="csrf-token" content="{{csrf_token()}}">
 </head>
 
 <body data-instant-intensity="mousedown">
@@ -60,16 +62,19 @@
                     </a>
                 </div>
                 <div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
-                    <a href="{{Route('account.login')}}" class="nav-link text-dark">My Account</a>
-                    {{-- <form action="">
+                    @if (Auth::check())
+                        <a href="{{Route('account.profile')}}" class="nav-link text-dark">My Account</a>
+                    @else
+                        <a href="{{Route('account.login')}}" class="nav-link text-dark">Login/Register</a>
+                    @endif
+                    <form action="{{route('front.shop')}}" method="get">
                         <div class="input-group">
-                            <input type="text" placeholder="Search For Products" class="form-control"
-                                aria-label="Amount (to the nearest dollar)">
-                            <span class="input-group-text">
+                            <input value="{{Request::get('search')}}" type="text" placeholder="Search For Products" class="form-control" name="search">
+                            <button type="submit" class="input-group-text">
                                 <i class="fa fa-search"></i>
-                            </span>
+                            </button>
                         </div>
-                    </form> --}}
+                    </form>
                 </div>
             </div>
         </div>
@@ -98,9 +103,9 @@
                         @if (getCategories()->isNotEmpty())
                             @foreach (getCategories() as $category)
                                 <li class="nav-item">
-                                    <button class="btn btn-dark" aria-expanded="false">
+                                    <a href = "{{route("front.shop",$category->slug)}}"><button class="btn btn-dark" aria-expanded="false">
                                         {{ $category->name }}
-                                    </button>
+                                    </button></a>
                                 </li>
                                 <!-- old category block incase of sub category implementation -->
                                 {{-- <li class="nav-item dropdown">
@@ -121,11 +126,11 @@
 
                     </ul>
                 </div>
-                {{-- <div class="right-nav py-0">
-                    <a href="cart.php" class="ml-3 d-flex pt-2">
+                <div class="right-nav py-0">
+                    <a href="{{route('front.cart')}}" class="ml-3 d-flex pt-2">
                         <i class="fas fa-shopping-cart text-primary"></i>
                     </a>
-                </div> --}}
+                </div>
             </nav>
         </div>
     </header>
@@ -207,7 +212,31 @@
                 navbar.classList.remove("sticky");
             }
         }
+
+        $.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+        function addToCart(id){
+            $.ajax({
+                url:'{{route("front.addToCart")}}',
+                type:'post',
+                data:{id:id},
+                dataType:'json',
+                success: function(response){
+                    if(response.status ==true){
+                        window.location.href="{{route('front.cart')}}";
+                    }else{
+                        alert(response.message);
+                    }
+
+                }
+
+            });
+        }
     </script>
+
 </body>
 
 </html>
