@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductImageController;
 use App\Http\Controllers\admin\TempImagesController;
@@ -83,6 +84,10 @@ Route::post('/authenticate',[AdminLoginController::class,'authenticate'])->name(
         Route::get('/categories/{categories}/edit',[CategoryController::class,'edit'])->name('categories.edit');
         Route::put('/categories/{categories}',[CategoryController::class,'update'])->name('categories.update');
         Route::delete('/categories/{categories}',[CategoryController::class,'destroy'])->name('categories.delete');
+
+        //Order Route
+        Route::get('/orders',[OrderController::class,'index'])->name('orders.index');
+        Route::get('/orders/{id}',[OrderController::class,'detail'])->name('orders.detail');
 
         //temp-images.create
         Route::post('/upload-temp-image',[TempImagesController::class,'create'])->name('temp-images.create');
