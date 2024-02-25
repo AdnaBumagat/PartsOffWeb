@@ -45,7 +45,22 @@
                     <h2 class="price ">₱{{$product->price}}</h2>
 
                     <div>{!!$product->product_detail!!}<div>
-                    <a href="javascript:void(0)" onclick="addToCart({{$product->id}});" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> &nbsp;ADD TO CART</a>
+                    {{-- <a href="javascript:void(0)" onclick="addToCart({{$product->id}});" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> &nbsp;ADD TO CART</a> --}}
+                        @if ($product->track_qty == 'Yes')
+                           @if ($product->qty > 0 )
+                           <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{$product->id}});">
+                               <i class="fa fa-shopping-cart"></i> Add To Cart
+                           </a>
+                           @else
+                           <a class="btn btn-dark" href="javascript:void(0);">
+                               Out of Stock
+                           </a>
+                           @endif
+                       @else
+                       <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{$product->id}});">
+                           <i class="fa fa-shopping-cart"></i> Add To Cart
+                       </a>
+                       @endif
                 </div>
             </div>    
         </div>
