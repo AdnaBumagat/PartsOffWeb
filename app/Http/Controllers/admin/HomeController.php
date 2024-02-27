@@ -81,7 +81,7 @@ class HomeController extends Controller
             'totalCustomers'=> $totalCustomers,
             'totalRevenue'=> $totalRevenue,
             'revenueThisMonth'=> $revenueThisMonth,
-            'revenueLastMonth'=> $revenueThisMonth,
+            'revenueLastMonth'=> $revenueLastMonth,
             'revenueLastThirtyDays' => $revenueLastThirtyDays,
             'lastMonthName' => $lastMonthName,
         ]);
