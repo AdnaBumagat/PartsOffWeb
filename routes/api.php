@@ -4,6 +4,7 @@ use App\Http\Controllers\api\AuthApiController;
 use App\Http\Controllers\api\ProductApiController;
 use App\Http\Controllers\api\CategoryApiController;
 use App\Http\Controllers\api\CartApiController;
+use App\Http\Controllers\api\ShopApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,12 +28,15 @@ Route::get('/admin/login',[AuthApiController::class,'login']);
 
 //* Product api
 Route::get('/products',[ProductApiController::class,'index']);
+Route::get('/products/latest', [ProductApiController::class, 'getLatestProduct']);
 
 //* Categories api
 Route::get('/categories',[CategoryApiController::class,'index']);
 
 //* Cart api
 Route::get('/cart', [CartApiController::class, 'cart']);
-Route::get('/add-to-cart', [CartApiController::class, 'addToCart']);
-Route::get('/update-cart', [CartApiController::class, 'updateCart']);
-Route::get('/delete-item', [CartApiController::class, 'deleteItem']);
+
+//* Shop api
+Route::get('/shop/{categorySlug?}', [ShopApiController::class, 'index']);
+Route::get('/product/{slug}',[ShopApiController::class,'product']);
+

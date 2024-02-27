@@ -31,7 +31,6 @@ class ShopApiController extends Controller
 
         $products = $products->orderBy('id', 'DESC');
 
-
         $products = $products->paginate(9);
 
         $data['categories'] = $categories;
