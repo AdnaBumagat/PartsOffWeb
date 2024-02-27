@@ -242,7 +242,7 @@ class CartController extends Controller
             foreach(Cart::content() as $item){
                 $orderItem =new OrderItem;
                 $orderItem->product_id =$item->id;
-                $orderItem->order_id =$item->id;
+                $orderItem->order_id =$order->id;
                 $orderItem->name =$item->name;
                 $orderItem->qty =$item->qty;
                 $orderItem->price =$item->price;

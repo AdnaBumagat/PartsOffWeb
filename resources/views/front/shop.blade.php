@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                <!--PRICE-->
+                {{-- <!--PRICE-->
                 <div class="sub-title mt-5">
                     <h2>Price</h3>
                 </div>
@@ -69,7 +69,7 @@
                             </label>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="col-md-9">
                 <div class="row pb-3">
