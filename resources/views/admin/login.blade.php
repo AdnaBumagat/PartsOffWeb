@@ -15,7 +15,7 @@
 	<body class="hold-transition login-page">
 		<div class="login-box">
 			<!-- /.login-logo -->
-            @include('admin.message');
+            @include('admin.message')
 			<div class="card" style="background-color: ">
 			  	<div class="card-header text-center" style="background-color: #6b21a8">
 					<a href="#" class="h3">Parts Off Admin</a>
