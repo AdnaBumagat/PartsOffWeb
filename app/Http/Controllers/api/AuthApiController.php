@@ -24,15 +24,15 @@ class AuthApiController extends Controller
 
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-                $token = $validator->createToken('token')->plainTextToken;
+                //$token = $validator->createToken('token')->plainTextToken;
                 return response()->json([
                     'message' => 'Login successful',
-                    'token' => $token,
+                    //'token' => $token,
                 ]);
             } else {
 
                 return response()->json([
-                    'message' => 'Either email/password is incorrect.'
+                    'message' => 'Either email or password is incorrect.'
                 ]);
             }
         } else {
@@ -90,7 +90,6 @@ class AuthApiController extends Controller
             'old_password' => 'required',
             'new_password' => 'required|min:5',
             'confirm_password' => 'required|same:new_password'
-
         ]);
         if ($valdidator->passes()) {
 
