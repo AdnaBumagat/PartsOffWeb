@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class ShopApiController extends Controller
 {
     //* GET categories and products
     public function index(Request $request, $categorySlug = null)

@@ -13,7 +13,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class CartController extends Controller
+class CartApiController extends Controller
 {
     public function addToCart(Request $request){
         $product = Product::with('product_images')->find($request->id);

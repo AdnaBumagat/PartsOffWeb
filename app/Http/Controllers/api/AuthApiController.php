@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class AuthenticationController extends Controller
+class AuthApiController extends Controller
 {
 
     //* Login function
@@ -51,7 +51,7 @@ class AuthenticationController extends Controller
         }
     }
 
-    //*
+    //* Logout
     public function logout() {
         Auth::logout();
         return response()->json([

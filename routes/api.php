@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\api\AuthenticationController;
-use App\Http\Controllers\api\ProductController;
-use App\Http\Controllers\api\CategoryController;
-use App\Http\Controllers\api\CartController;
+use App\Http\Controllers\api\AuthApiController;
+use App\Http\Controllers\api\ProductApiController;
+use App\Http\Controllers\api\CategoryApiController;
+use App\Http\Controllers\api\CartApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,22 +23,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //* Authentication
-Route::get('/admin/login',[AuthenticationController::class,'login']);
+Route::get('/admin/login',[AuthApiController::class,'login']);
 
 //* Product api
-Route::get('/products',[ProductController::class,'index']);
-Route::post('/products/store',[ProductController::class,'store']);
-Route::put('products/update/{productID}', [ProductController::class, 'update']);
-Route::delete('products/destroy/{productID}', [ProductController::class, 'destroy']);
+Route::get('/products',[ProductApiController::class,'index']);
 
 //* Categories api
-Route::get('/categories',[CategoryController::class,'index']);
-Route::post('/categories/store',[CategoryController::class,'store']);
-Route::put('/categories/update/{categoryID}',[CategoryController::class,'update']);
-Route::delete('/categories/destroy/{categoryID}',[CategoryController::class,'destroy']);
+Route::get('/categories',[CategoryApiController::class,'index']);
 
 //* Cart api
-Route::get('/cart', [CartController::class, 'cart']);
-Route::get('/add-to-cart', [CartController::class, 'addToCart']);
-Route::get('/update-cart', [CartController::class, 'updateCart']);
-Route::get('/delete-item', [CartController::class, 'deleteItem']);
+Route::get('/cart', [CartApiController::class, 'cart']);
+Route::get('/add-to-cart', [CartApiController::class, 'addToCart']);
+Route::get('/update-cart', [CartApiController::class, 'updateCart']);
+Route::get('/delete-item', [CartApiController::class, 'deleteItem']);
