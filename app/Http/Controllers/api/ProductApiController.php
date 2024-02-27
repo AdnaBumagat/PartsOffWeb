@@ -41,6 +41,8 @@ class ProductApiController extends Controller
 
         $data['latestProducts'] = $latestProducts;
 
-        return view('front.home', $data);
+        return response()->json([
+            'data' => $data
+        ]);
     }
 }

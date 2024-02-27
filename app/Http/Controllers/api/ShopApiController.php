@@ -37,7 +37,9 @@ class ShopApiController extends Controller
         $data['products'] = $products;
         $data['categorySelected'] = $categorySelected;
 
-        return response()->json($data);
+        return response()->json([
+            'data' => $data
+        ]);
     }
 
     //*Product Page
@@ -50,6 +52,8 @@ class ShopApiController extends Controller
 
         $data['product'] = $product;
 
-        return response()->json($data);
+        return response()->json([
+            'data' => $data
+        ]);
     }
 }
