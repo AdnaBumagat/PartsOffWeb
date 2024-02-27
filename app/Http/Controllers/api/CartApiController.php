@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CartApiController extends Controller
 {
+    //* Add to cart
     public function addToCart(Request $request){
         $product = Product::with('product_images')->find($request->id);
 
@@ -26,11 +27,11 @@ class CartApiController extends Controller
         }
 
         if(Cart::count() > 0){
-            // echo "Product already in cart";
-            // Product found in cart
-            // check if this product already in the cart
-            // Return as message that product already added in cart
-            // if product not found in the cart, then add product in cart
+            //* echo "Product already in cart";
+            //* Product found in cart
+            //* check if this product already in the cart
+            //* Return as message that product already added in cart
+            //* if product not found in the cart, then add product in cart
 
             $cartContent = Cart::content();
             $productAlreadyExist = false;
@@ -81,7 +82,7 @@ class CartApiController extends Controller
         $itemInfo = Cart::get($rowId);
 
         $product = Product::find($itemInfo->id);
-        //check qty available in stock
+        //* check qty available in stock
 
         if($product->track_qty == 'Yes'){
             if($qty <= $product->qty){

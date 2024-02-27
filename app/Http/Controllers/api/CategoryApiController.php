@@ -13,7 +13,7 @@ use Intervention\Image\Facades\Image;
 class CategoryApiController extends Controller
 {
     //* Display all categories
-    public function index(Request $request)
+    public function index()
     {
         $categories =Category::all();
 

@@ -14,7 +14,7 @@ use Intervention\Image\Facades\Image;
 
 class ProductApiController extends Controller
 {
-    //* Product Index
+    //* Get all products
     public function index(Request $request)
     {
 
@@ -24,6 +24,7 @@ class ProductApiController extends Controller
         return response()->json($data);
     }
 
+    //* Filter products by latest
     public function getLatestProduct()
     {
         $products = Product::where('is_featured', 'Yes')
@@ -41,6 +42,8 @@ class ProductApiController extends Controller
 
         $data['latestProducts'] = $latestProducts;
 
-        return view('front.home', $data);
+        return response()->json([
+            'data' => $data
+        ]);
     }
 }

@@ -17,6 +17,8 @@
 		<link rel="stylesheet" href="{{asset('admin-assets/plugins/summernote/summernote.min.css')}}">
 		<link rel="stylesheet" href="{{asset('admin-assets/plugins/dropzone/min/dropzone.min.css')}}">
 		<link rel="stylesheet" href="{{asset('admin-assets/css/datetimepicker.css')}}">
+		<link rel="stylesheet" href="{{asset('admin-assets/css/ion.rangeSlider.min.css')}}">
+
 
 		<meta name="csrf-token" content="{{csrf_token()}}">
 	</head>
@@ -28,7 +30,7 @@
 				<!-- Right navbar links -->
 				<ul class="navbar-nav">
 					<li class="nav-item">
-					  	<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 					</li>
 				</ul>
 				<div class="navbar-nav pl-2">
@@ -89,8 +91,8 @@
 		<script src="{{asset('admin-assets/js/adminlte.min.js')}}"></script>
 		<script src="{{asset('admin-assets/plugins/summernote/summernote.min.js')}}"></script>
 		<script src="{{asset('admin-assets/plugins/dropzone/min/dropzone.min.js')}}"></script>
-
 		<script src="{{asset('admin-assets/js/datetimepicker.js')}}"></script>
+		<script src="{{asset('admin-assets/js/ion.rangeSlider.min.js')}}"></script>
 		<!-- AdminLTE for demo purposes -->
 		<script src="{{asset('admin-assets/js/demo.js')}}"></script>
 

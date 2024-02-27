@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick-theme.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/style.css') }}" />
+    <link rel="stylesheet" href="{{asset('front-assets/css/ion.rangeSlider.min.css')}}">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -159,6 +160,7 @@
     <script src="{{ asset('front-assets/js/lazyload.17.6.0.min.js') }}"></script>
     <script src="{{ asset('front-assets/js/slick.min.js') }}"></script>
 	<script src="{{ asset('front-assets/js/custom.js') }}"></script>
+    <script src="{{ asset('front-assets/js/ion.rangeSlider.min.js')}}"></script>
 
     <script>
         window.onscroll = function() {
