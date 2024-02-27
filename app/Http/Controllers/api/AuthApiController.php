@@ -24,8 +24,10 @@ class AuthApiController extends Controller
 
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
+                $token = $validator->createToken('token')->plainTextToken;
                 return response()->json([
-                    'message' => 'Login successful'
+                    'message' => 'Login successful',
+                    'token' => $token,
                 ]);
             } else {
 
@@ -36,7 +38,7 @@ class AuthApiController extends Controller
         } else {
 
             return response()->json([
-                'message' => ''
+                'message' => 'Email and password is required.'
             ]);
         }
     }
@@ -71,6 +73,7 @@ class AuthApiController extends Controller
 
             return response()->json([
                 'status' => true,
+                'message' => 'Successfully registered.'
             ]);
         } else {
             return response()->json([
