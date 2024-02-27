@@ -3,9 +3,12 @@
 use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductImageController;
+use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\TempImagesController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontController;
@@ -29,15 +32,27 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+//* Shop Routes
 Route::get('/', [FrontController::class, 'index'])->name('front.home');
-Route::get('/shop', [ShopController::class, 'index'])->name('front.shop');
+Route::get('/shop/{categorySlug?}', [ShopController::class, 'index'])->name('front.shop');
 Route::get('/product/{slug}',[ShopController::class,'product'])->name('front.product');
+
+//* Cart Routes
+Route::get('/cart', [CartController::class, 'cart'])->name('front.cart');
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('front.addToCart');
+Route::post('/update-cart', [CartController::class, 'updateCart'])->name('front.updateCart');
+Route::post('/delete-item', [CartController::class, 'deleteItem'])->name('front.deleteItem.cart');
+
+Route::get('/checkout', [CartController::class, 'checkout'])->name('front.checkout');
+Route::post('/process-checkout', [CartController::class, 'processCheckout'])->name('front.processCheckout');
+Route::get('/thanks/{orderId}', [CartController::class, 'thankyou'])->name('front.thankyou');
+
+
 
     Route::group(['prefix'=>'account'],function(){
         Route::group(['middleware'=>'guest'],function(){
         Route::get('/login', [AuthController::class,'login'])->name('account.login');
         Route::post('/login', [AuthController::class,'authenticate'])->name('account.authenticate');
-
         Route::get('/register', [AuthController::class,'register'])->name('account.register');
         Route::post('/process-register', [AuthController::class, 'processRegister'])->name('account.processRegister');
 
@@ -45,7 +60,12 @@ Route::get('/product/{slug}',[ShopController::class,'product'])->name('front.pro
 
     Route::group(['middleware'=>'auth'],function(){
         Route::get('/profile', [AuthController::class,'profile'])->name('account.profile');
+        Route::post('/update-profile', [AuthController::class,'updateProfile'])->name('account.updateProfile');
+        Route::get('/my-orders', [AuthController::class,'orders'])->name('account.orders');
+        Route::get('/order-detail/{orderId}', [AuthController::class,'orderDetail'])->name('account.orderDetail');
         Route::get('/logout', [AuthController::class,'logout'])->name('account.logout');
+        Route::get('/change-password', [AuthController::class,'showChangePasswordForm'])->name('account.changePassword');
+        Route::post('/process-change-password', [AuthController::class,'changePassword'])->name('account.processChangePassword');
     });
 
 
@@ -72,9 +92,6 @@ Route::post('/authenticate',[AdminLoginController::class,'authenticate'])->name(
         Route::put('/categories/{categories}',[CategoryController::class,'update'])->name('categories.update');
         Route::delete('/categories/{categories}',[CategoryController::class,'destroy'])->name('categories.delete');
 
-        //temp-images.create
-        Route::post('/upload-temp-image',[TempImagesController::class,'create'])->name('temp-images.create');
-
         //Product Routes
         Route::get('/products',[ProductController::class,'index'])->name('products.index');
         Route::get('/products/create',[ProductController::class,'create'])->name('products.create');
@@ -85,6 +102,28 @@ Route::post('/authenticate',[AdminLoginController::class,'authenticate'])->name(
 
         Route::post('/product-images/update',[ProductImageController::class,'update'])->name('product-images.update');
         Route::delete('/product-images',[ProductImageController::class,'destroy'])->name('product-images.destroy');
+
+        //Order Route
+        Route::get('/orders',[OrderController::class,'index'])->name('orders.index');
+        Route::get('/orders/{id}',[OrderController::class,'detail'])->name('orders.detail');
+        Route::post('/orders/change-status/{id}',[OrderController::class,'changeOrderStatus'])->name('orders.changeOrderStatus');
+
+
+        //User Route
+        Route::get('/users',[UserController::class,'index'])->name('users.index');
+        Route::get('/users/create',[UserController::class,'create'])->name('users.create');
+        Route::post('/users',[UserController::class,'store'])->name('users.store');
+        Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
+        Route::put('/users/{user}',[UserController::class,'update'])->name('users.update');
+        Route::delete('/users/{user}',[UserController::class,'destroy'])->name('users.delete');
+
+        //temp-images.create
+        Route::post('/upload-temp-image',[TempImagesController::class,'create'])->name('temp-images.create');
+
+        //Admin Setting
+        Route::get('/change-password',[SettingController::class,'showChangePasswordForm'])->name('admin.showChangePasswordForm');
+        Route::post('/process-change-password',[SettingController::class,'processChangePassword'])->name('admin.processChangePassword');
+
     });
 
 });

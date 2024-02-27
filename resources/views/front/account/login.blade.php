@@ -5,7 +5,7 @@
     <div class="container">
         <div class="light-font">
             <ol class="breadcrumb primary-color mb-0">
-                <li class="breadcrumb-item"><a class="white-text" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="white-text" href="{{route('front.home')}}">Home</a></li>
                 <li class="breadcrumb-item">Login</li>
             </ol>
         </div>
@@ -39,9 +39,6 @@
                     @error('password')
                         <p class="invalid-feedback">{{ $message }}</p>
                     @enderror
-                </div>
-                <div class="form-group small">
-                    <a href="#" class="forgot-link">Forgot Password?</a>
                 </div>
                 <input type="submit" class="btn btn-dark btn-block btn-lg" value="Login">
             </form>

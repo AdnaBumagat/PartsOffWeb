@@ -5,7 +5,7 @@
     <div class="container">
         <div class="light-font">
             <ol class="breadcrumb primary-color mb-0">
-                <li class="breadcrumb-item"><a class="white-text" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="white-text" href="{{route('front.home')}}">Home</a></li>
                 <li class="breadcrumb-item active">Shop</li>
             </ol>
         </div>
@@ -28,7 +28,7 @@
                             @if ($categories -> isNotEmpty())
 
                             @foreach ($categories as $category)
-                            <a href="{{ route("front.shop", $category->slug) }}" class="nav-time nav-link">{{ $category->name }}</a>
+                            <a href="{{route("front.shop",$category->slug)}}" class="nav-time nav-link">{{ $category->name }}</a>
                             @endforeach
 
                             @endif
@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                <!--PRICE-->
+                {{-- <!--PRICE-->
                 <div class="sub-title mt-5">
                     <h2>Price</h3>
                 </div>
@@ -69,21 +69,21 @@
                             </label>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="col-md-9">
                 <div class="row pb-3">
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-end mb-4">
                             <div class="ml-2">
-                                <div class="btn-group">
+                                {{-- <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown">Sorting</button>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#">Latest</a>
                                         <a class="dropdown-item" href="#">Price High</a>
                                         <a class="dropdown-item" href="#">Price Low</a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -109,10 +109,22 @@
                                 </a>
 
                                 <div class="product-action">
-                                    <a class="btn btn-dark" href="#">
+                                    @if ($product->track_qty == 'Yes')
+                                        @if ($product->qty > 0 )
+                                        <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{$product->id}});">
+                                            <i class="fa fa-shopping-cart"></i> Add To Cart
+                                        </a>
+                                        @else
+                                        <a class="btn btn-dark" href="javascript:void(0);">
+                                            Out of Stock
+                                        </a>
+                                        @endif
+                                    @else
+                                    <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{$product->id}});">
                                         <i class="fa fa-shopping-cart"></i> Add To Cart
                                     </a>
-                                </div>
+                                    @endif
+                                </div> 
                             </div>
                             <div class="card-body text-center mt-3">
                                 <a class="h6 link" href="{{route("front.product",$product->slug)}}">{{ $product->title }}</a>
@@ -129,7 +141,8 @@
                     @endif
 
                     <div class="col-md-12 pt-5">
-                        <nav aria-label="Page navigation example">
+                        {{ $products->withQueryString()->links()}}
+                        {{-- <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-end">
                                 <li class="page-item disabled">
                                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -141,7 +154,7 @@
                                 <a class="page-link" href="#">Next</a>
                                 </li>
                             </ul>
-                        </nav>
+                        </nav> --}}
                     </div>
                 </div>
             </div>

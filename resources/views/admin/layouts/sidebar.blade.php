@@ -31,30 +31,23 @@
 							</li>
 
 							<li class="nav-item">
-								<a href="" class="nav-link">
-									<!-- <i class="nav-icon fas fa-tag"></i> -->
-									<i class="fas fa-truck nav-icon"></i>
-									<p>Shipping</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="" class="nav-link">
+								<a href="{{ route('orders.index') }}" class="nav-link">
 									<i class="nav-icon fas fa-shopping-bag"></i>
 									<p>Orders</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="" class="nav-link">
+								<a href="{{route('users.index')}}" class="nav-link">
 									<i class="nav-icon  fas fa-users"></i>
 									<p>Users</p>
 								</a>
 							</li>
-							<li class="nav-item">
+							{{-- <li class="nav-item">
 								<a href="" class="nav-link">
 									<i class="nav-icon  far fa-file-alt"></i>
 									<p>Pages</p>
 								</a>
-							</li>
+							</li> --}}
 						</ul>
 					</nav>
 					<!-- /.sidebar-menu -->

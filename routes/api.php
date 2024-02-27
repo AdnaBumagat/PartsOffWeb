@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\api\AdminLoginController;
-use App\Http\Controllers\api\ProductController;
-use App\Http\Controllers\api\CategoryController;
+use App\Http\Controllers\api\AuthApiController;
+use App\Http\Controllers\api\ProductApiController;
+use App\Http\Controllers\api\CategoryApiController;
+use App\Http\Controllers\api\CartApiController;
+use App\Http\Controllers\api\ShopApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,17 +23,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//*
-Route::get('/admin/login',[AdminLoginController::class,'login']);
+//* Authentication
+Route::get('/admin/login',[AuthApiController::class,'login']);
 
 //* Product api
-Route::get('/products',[ProductController::class,'index']);
-Route::post('/products/store',[ProductController::class,'store']);
-Route::put('products/update/{productID}', [ProductController::class, 'update']);
-Route::delete('products/destroy/{productID}', [ProductController::class, 'destroy']);
+Route::get('/products',[ProductApiController::class,'index']);
+Route::get('/products/latest', [ProductApiController::class, 'getLatestProduct']);
 
 //* Categories api
-Route::get('/categories',[CategoryController::class,'index']);
-Route::post('/categories/store',[CategoryController::class,'store']);
-Route::put('/categories/update/{categoryID}',[CategoryController::class,'update']);
-Route::delete('/categories/destroy/{categoryID}',[CategoryController::class,'destroy']);
+Route::get('/categories',[CategoryApiController::class,'index']);
+
+//* Cart api
+Route::get('/cart', [CartApiController::class, 'cart']);
+
+//* Shop api
+Route::get('/shop/{categorySlug?}', [ShopApiController::class, 'index']);
+Route::get('/product/{slug}',[ShopApiController::class,'product']);
+

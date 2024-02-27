@@ -16,9 +16,9 @@
 		<div class="login-box">
 			<!-- /.login-logo -->
             @include('admin.message');
-			<div class="card card-outline card-primary">
-			  	<div class="card-header text-center">
-					<a href="#" class="h3">Administrative Panel</a>
+			<div class="card" style="background-color: ">
+			  	<div class="card-header text-center" style="background-color: #6b21a8">
+					<a href="#" class="h3">Parts Off Admin</a>
 			  	</div>
 			  	<div class="card-body">
 					<p class="login-box-msg">Sign in to start your session</p>
@@ -61,14 +61,11 @@
 							</div> -->
 							<!-- /.col -->
 							<div class="col-4">
-					  			<button type="submit" class="btn btn-primary btn-block">Login</button>
+					  			<button type="submit" class="btn btn-primary btn-block" style="background-color: #6b21a8 ">Login</button>
 							</div>
 							<!-- /.col -->
 				  		</div>
-					</form>
-		  			<p class="mb-1 mt-3">
-				  		<a href="forgot-password.html">I forgot my password</a>
-					</p>					
+					</form>					
 			  	</div>
 			  	<!-- /.card-body -->
 			</div>
