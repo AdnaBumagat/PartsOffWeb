@@ -99,7 +99,7 @@
                                         <i class="fa fa-shopping-cart"></i> Add To Cart
                                     </a>
                                     @endif
-                                </div> 
+                                </div>
                             </div>
                             <div class="card-body text-center mt-3">
                                 <a class="h6 link" href="{{route("front.product",$product->slug)}}">{{ $product->title }}</a>
@@ -131,7 +131,7 @@
     rangeSlider = $(".js-range-slider").ionRangeSlider({
         type: "double",
         min: 0,
-        max: 10000,
+        max: 50000,
         from: {{$priceMin}},
         step: 10,
         to: {{$priceMax}},

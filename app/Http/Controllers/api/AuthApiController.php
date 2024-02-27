@@ -24,27 +24,16 @@ class AuthApiController extends Controller
 
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-                // if(session()->has('url.intended')){
-                //     return redirect(session()->get('url.intended'));
-                // }
-
                 return response()->json([
                     'message' => 'Login successful'
                 ]);
             } else {
-                //session()->flash('error','Either email/password is incorrect.');
 
-                // return redirect()->route('account.login')
-                //     ->withInput($request->only('email'))
-                //     ->with('error', 'Either email/password is incorrect.');
                 return response()->json([
                     'message' => 'Either email/password is incorrect.'
                 ]);
             }
         } else {
-            // return redirect()->route('account.login')
-            //     ->withErrors($validator)
-            //     ->withInput($request->only('email'));
 
             return response()->json([
                 'message' => ''

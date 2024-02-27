@@ -17,26 +17,26 @@ class ShopController extends Controller
         //* GET categories, order by name, ascending, and status = 1
         $categories = Category::orderBy('name', 'ASC')->where('status', 1)->get();
         $products = Product::where('status',1);
-        
+
         //Apply Filters here
         if(!empty($categorySlug)){
             $category = Category::where('slug',$categorySlug)->first();
             $products = $products->where('category_id',$category->id);
             $categorySelected = $category->id;
         }
-        
+
         if(!empty($request->get('search'))){
             $products = $products->where('title','like','%'.$request->get('search').'%');
         }
 
         if($request->get('price_max') != '' && $request->get('price_min') != ''){
-            if($request->get('price_max') == '10000'){
+            if($request->get('price_max') == '50000'){
                 $products = $products->whereBetween('price',[intval($request->get('price_min')),intval($request->get('price_max')),100000]);
             }else{
             $products = $products->whereBetween('price',[intval($request->get('price_min')),intval($request->get('price_max'))]);
             }
         }
-        
+
 
         if ($request->get('sort') !=''){
             if($request->get('sort') == 'latest'){
@@ -49,8 +49,8 @@ class ShopController extends Controller
         }else{
             $products = $products->orderBy('id', 'DESC');
         }
-        
-        
+
+
         $products = $products->paginate(6);
 
         $data['categories'] = $categories;
