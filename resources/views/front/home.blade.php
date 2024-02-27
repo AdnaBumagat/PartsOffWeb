@@ -64,84 +64,6 @@
         </button>
     </div>
 </section>
-<section class="section-2">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="box shadow-lg">
-                    <div class="fa icon fa-check text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">Quality Product</h5>
-                </div>
-            </div>
-            <div class="col-lg-3 ">
-                <div class="box shadow-lg">
-                    <div class="fa icon fa-shipping-fast text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">Free Shipping</h2>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="box shadow-lg">
-                    <div class="fa icon fa-exchange-alt text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">14-Day Return</h2>
-                </div>
-            </div>
-            <div class="col-lg-3 ">
-                <div class="box shadow-lg">
-                    <div class="fa icon fa-phone-volume text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">24/7 Support</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="section-3">
-    <!--DISPLAY ALL CATEGORIES-->
-    <div class="container">
-        <div class="section-title">
-            <h2>Categories</h2>
-        </div>
-        <div class="row pb-3">
-
-            <!--DISPLAY CATEGORY-->
-            @if (getCategories()->isNotEmpty())
-                @foreach (getCategories() as $category)
-                <div class="col-lg-3">
-                    <div class="cat-card">
-                        <div class="left">
-                            @if ($category->image != "")
-                            <img src="{{asset('uploads/category/thumb/'.$category->image)}}" alt="" class="img-fluid">
-                            @endif
-                            {{-- <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid"> --}}
-                        </div>
-                        <div class="right">
-                            <div class="cat-data">
-                                <h2>{{ $category->name }}</h2>
-                                <p>100 Products</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            @endif
-
-            <!--Old code in case of errors-->
-            {{-- <div class="col-lg-3">
-                <div class="cat-card">
-                    <div class="left">
-                        <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid">
-                    </div>
-                    <div class="right">
-                        <div class="cat-data">
-                            <h2>Mens</h2>
-                            <p>100 Products</p>
-                        </div>
-                    </div>
-                </div>
-            </div>--}}
-
-        </div>
-    </div>
-</section>
 
 <section class="section-4 pt-5">
     <!--Featured Products-->
@@ -161,7 +83,6 @@
                         <div class="product-image position-relative">
                             <a href="{{route("front.product",$product->slug)}}" class="product-img">
 
-                                {{-- <img class="card-img-top" src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""> --}}
 
                                 @if (!empty($productImage->image))
                                     <img class="card-img-top" src="{{asset('uploads/product/small/'.$productImage->image)}}" />
@@ -225,17 +146,16 @@
                         <div class="product-image position-relative">
                             <a href="{{route("front.product",$product->slug)}}" class="product-img">
 
-                                {{-- <img class="card-img-top" src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""> --}}
 
                                 @if (!empty($productImage->image))
                                     <img class="card-img-top" src="{{asset('uploads/product/small/'.$productImage->image)}}" />
                                 @else
-                                <img class="card-img-top" src="{{asset('admin-assets/img/default-150x150.png')}}" />
+                                    <img src="{{asset('admin-assets/img/default-150x150.png')}}" />
                                 @endif
 
                             </a>
 
-                             <div class="product-action">
+                            <div class="product-action">
                                 @if ($product->track_qty == 'Yes')
                                     @if ($product->qty > 0 )
                                     <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{$product->id}});">
@@ -257,7 +177,7 @@
                             <a class="h6 link" href="{{route("front.product",$product->slug)}}">{{ $product->title }}</a>
                             <div class="price mt-2">
 
-                                <span class="h5"><strong>₱{{ $product->price }}</span>
+                                <span class="h5"><strong>₱{{ $product->price }}</strong></span>
 
                             </div>
                         </div>
@@ -266,6 +186,39 @@
                 @endforeach
 
             @endif
+
+        </div>
+    </div>
+</section>
+
+
+<section class="section-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="box style">
+                    <div class="fa icon fa-check text-primary m-0 mr-3"></div>
+                    <h2 class="font-weight-semi-bold m-0">Quality Product</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 ">
+                <div class="box">
+                    <div class="fa icon fa-shipping-fast text-primary m-0 mr-3"></div>
+                    <h2 class="font-weight-semi-bold m-0">Free Shipping</h2>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="box">
+                    <div class="fa icon fa-exchange-alt text-primary m-0 mr-3"></div>
+                    <h2 class="font-weight-semi-bold m-0">14-Day Return</h2>
+                </div>
+            </div>
+            <div class="col-lg-3 ">
+                <div class="box">
+                    <div class="fa icon fa-phone-volume text-primary m-0 mr-3"></div>
+                    <h2 class="font-weight-semi-bold m-0">24/7 Support</h5>
+                </div>
+            </div>
         </div>
     </div>
 </section>

@@ -8,30 +8,6 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no" />
 
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="pinterest" content="nopin" />
-
-    <meta property="og:locale" content="en_AU" />
-    <meta property="og:type" content="website" />
-    <meta property="fb:admins" content="" />
-    <meta property="fb:app_id" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="" />
-    <meta property="og:image:height" content="" />
-    <meta property="og:image:alt" content="" />
-
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:site" content="" />
-    <meta name="twitter:description" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:image:alt" content="" />
-    <meta name="twitter:card" content="summary_large_image" />
-
     <!--CSS links-->
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick-theme.css') }}" />
@@ -57,7 +33,7 @@
             <div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
                 <div class="col-lg-4 logo">
                     <a href="{{Route('front.home')}}" class="text-decoration-none">
-                        <span class="h1 text-uppercase text-primary bg-dark px-2">Parts</span>
+                        <span class="h1 text-uppercase text-white bg-dark px-2">Parts</span>
                         <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">OFF</span>
                     </a>
                 </div>
@@ -107,19 +83,6 @@
                                         {{ $category->name }}
                                     </button></a>
                                 </li>
-                                <!-- old category block incase of sub category implementation -->
-                                {{-- <li class="nav-item dropdown">
-						<button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-							{{ $category->name }}
-						</button>
-						<ul class="dropdown-menu dropdown-menu-dark">
-							<li><a class="dropdown-item nav-link" href="#">Mobile</a></li>
-							<li><a class="dropdown-item nav-link" href="#">Tablets</a></li>
-							<li><a class="dropdown-item nav-link" href="#">Laptops</a></li>
-							<li><a class="dropdown-item nav-link" href="#">Speakers</a></li>
-							<li><a class="dropdown-item nav-link" href="#">Watches</a></li>
-						</ul>
-					</li> --}}
                             @endforeach
                         @endif
 
@@ -128,7 +91,7 @@
                 </div>
                 <div class="right-nav py-0">
                     <a href="{{route('front.cart')}}" class="ml-3 d-flex pt-2">
-                        <i class="fas fa-shopping-cart text-primary"></i>
+                        <i class="fas fa-shopping-cart text-white"></i>
                     </a>
                 </div>
             </nav>
@@ -139,12 +102,12 @@
         @yield('content')
     </main>
 
-    <footer class="mt-5" style="background-color:#6b21a8">
+    <footer class="mt-5" style="background-color:#212529">
         <div class="container pb-5 pt-3">
             <div class="row">
                 <div class="col-md-4">
                     <div class="footer-card">
-                        <h3><i class="fas fa-info-circle"></i> About Us</h3>
+                        <h2  class="my-3"><i class="fas fa-info-circle"></i> About Us</h2>
                         <p>Parts OFF is your go-to website to sell or buy<br>
                             second hand computer parts or accessories. We<br>
                             offer good service and quality products. We are<br>
@@ -155,7 +118,7 @@
 
                 <div class="col-md-4">
                     <div class="footer-card">
-                        <h3><i class="fas fa-phone-square"></i> Contact Us</h3>
+                        <h2  class="my-3"><i class="fas fa-phone-square"></i> Contact Us</h2>
                         <ul>
                             <li><i class="far fa-envelope"></i> PartsOff@business.com</li>
                             <li><i class="fas fa-phone"></i> 09156612352</li>
@@ -167,7 +130,7 @@
 
                 <div class="col-md-4">
                     <div class="footer-card">
-                        <h3><i class="fas fa-link"></i> Follow Us Here</h3>
+                        <h2 class="my-3"><i class="fas fa-link"></i> Follow Us Here</h2>
                         <ul>
                             <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
                             <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
