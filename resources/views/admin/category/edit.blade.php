@@ -39,20 +39,6 @@
                                 <p></p>
                             </div>
                         </div>
-                        <!--Edit image-->
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <input type="hidden" id="image_id" name="image_id" value="">
-                                <label for="image">Image</label>
-                                <div id="image" class="dropzone dz-clickable">
-                                </div>
-                            </div>
-                            @if (!@empty($category->image))
-                            <div>
-                                <img width="250" height="250" src="{{ asset('uploads/category/thumb/'.$category->image) }}" alt="">
-                            </div>
-                            @endif
-                        </div>
                         <!--Edit status-->
                         <div class="col-md-6">
                             <div class="mb-3">

@@ -56,7 +56,7 @@ class ShopController extends Controller
         $data['categories'] = $categories;
         $data['products'] = $products;
         $data['categorySelected'] = $categorySelected;
-        $data['priceMax'] = (intval($request->get('price_max'))== 0)?1000: $request->get('price_max');
+        $data['priceMax'] = (intval($request->get('price_max'))== 0)?50000: $request->get('price_max');
         $data['priceMin'] = intval($request->get('price_min'));
         $data['sort'] = $request->get('sort');
 
