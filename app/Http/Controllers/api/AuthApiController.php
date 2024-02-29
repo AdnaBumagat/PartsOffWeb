@@ -104,12 +104,12 @@ class AuthApiController extends Controller
     //* Change password
     public function changePassword(Request $request)
     {
-        $valdidator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'old_password' => 'required',
             'new_password' => 'required|min:5',
             'confirm_password' => 'required|same:new_password'
         ]);
-        if ($valdidator->passes()) {
+        if ($validator->passes()) {
 
             $user = User::select('id', 'password')->where('id', Auth::user()->id)->first();
 
@@ -130,7 +130,7 @@ class AuthApiController extends Controller
         } else {
             return response()->json([
                 'status' => false,
-                'errors' => $valdidator->errors()
+                'errors' => $validator->errors()
             ]);
         }
     }
