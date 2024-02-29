@@ -32,6 +32,7 @@ Route::post('/change-password', [AuthApiController::class, 'changePassword']);
 
 //* Product api
 Route::get('/products',[ProductApiController::class,'index']);
+Route::get('/displayProducts', [ProductApiController::class, 'displayProduct']);
 Route::get('/products/latest', [ProductApiController::class, 'getLatestProduct']);
 
 //* Categories api
