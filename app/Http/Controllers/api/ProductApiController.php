@@ -15,13 +15,21 @@ use Intervention\Image\Facades\Image;
 class ProductApiController extends Controller
 {
     //* Get all products
-    public function index(Request $request)
+    public function index()
     {
 
         $products = Product::with('product_images')->get();
 
         $data['products'] = $products;
         return response()->json($data);
+    }
+
+    public function displayProduct(){
+
+        $products = Product::select('title', 'description', 'price', 'qty')->get();
+
+        return response()->json($products);
+
     }
 
     //* Filter products by latest
