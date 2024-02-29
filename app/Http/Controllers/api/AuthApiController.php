@@ -12,6 +12,15 @@ use App\Models\User;
 class AuthApiController extends Controller
 {
 
+    //* GET users
+    public function getUsers(){
+        $users = User::all();
+
+        return response()->json([
+            'users' => $users
+        ]);
+    }
+
     //* Login function
     public function authenticate(Request $request)
     {
@@ -33,6 +42,7 @@ class AuthApiController extends Controller
 
                 //$token = $validator->createToken('token')->plainTextToken;
                 return response()->json([
+                    'status' => true,
                     'message' => 'Login successful',
                     'user' => $data
                 ]);
@@ -55,6 +65,7 @@ class AuthApiController extends Controller
     {
         Auth::logout();
         return response()->json([
+            'status' => true,
             'message' => 'Successfully logged out.'
         ]);
     }
