@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //* Authentication
+Route::get('/users' ,[AuthApiController::class, 'getUsers']);
 Route::get('/authenticate',[AuthApiController::class,'authenticate']);
 Route::get('/logout',[AuthApiController::class,'logout']);
 Route::post('/register', [AuthApiController::class, 'processRegister']);
