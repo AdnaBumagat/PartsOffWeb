@@ -33,6 +33,7 @@ class AuthApiController extends Controller
 
                 //$token = $validator->createToken('token')->plainTextToken;
                 return response()->json([
+                    'status' => true,
                     'message' => 'Login successful',
                     'user' => $data
                 ]);
