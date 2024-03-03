@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -74,7 +74,7 @@ class ProvinceSeeder extends Seeder
             array('code' => 'ZMB', 'name' => 'Zambales'),
             array('code' => 'ZSI', 'name' => 'Zamboanga Sibugay')
         );
-        
+
         // Inserting the provinces into the provinces table
         DB::table('provinces')->insert($provinces);
     }
