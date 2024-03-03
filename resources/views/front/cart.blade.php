@@ -118,13 +118,14 @@
             </div>
 
             @else
-            <div class="col-md-12 m-5">
-                <div class="card p-4">
-                    <div class="card-body d-flex justify-content-center align-item-center">
+            <div class="col-md-12">
+                <div class="card p-3 p-md-4">
+                    <div class="card-body text-center">
                         <h4>Your Cart is Empty!</h4>
                     </div>
                 </div>
             </div>
+            
 
             @endif
         </div>
