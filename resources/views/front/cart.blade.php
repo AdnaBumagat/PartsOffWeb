@@ -172,7 +172,6 @@
     }
 
     function deleteItem(rowId){
-        if(confirm("Are you sure you want to delete?")){
             $.ajax({
                 url:'{{route("front.deleteItem.cart")}}',
                 type: 'post',
@@ -184,7 +183,6 @@
                 }
 
             });
-        }
     }
 </script>
     
