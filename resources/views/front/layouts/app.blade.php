@@ -50,7 +50,7 @@
                         </div>
                     </form>
                     @if (Auth::check())
-                        <a href="{{Route('account.profile')}}" class="nav-link text-dark">My Account</i></a>
+                        <a href="{{Route('account.profile')}}" class="nav-link text-dark">Profile</i></a>
                     @else
                         <a href="{{Route('account.login')}}" class="nav-link text-dark">SignUp</i></a>
                     @endif
