@@ -116,9 +116,9 @@
                 <div class="col-md-4">
                     <div class="footer-card">
                         <h2  class="my-3"><i class="fas fa-info-circle"></i> About Us</h2>
-                        <p>Parts OFF is your go-to website to sell or buy<br>
-                            second hand computer parts or accessories. We<br>
-                            offer good service and quality products. We are<br>
+                        <p>Parts OFF is your go to when you want to buy<br>
+                            second hand computer parts or accessories.<br> We
+                            offer good service and quality products.<br> We are
                             sure you can find what you are looking for!<br>
                         </p>
                     </div>
