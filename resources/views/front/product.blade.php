@@ -22,7 +22,7 @@
 
                         @if ($product->product_images)
                             @foreach($product->product_images as $key => $productImage)
-                            <div class ="carouse-item"{{($key==0) ? 'active' : ''}}>
+                            <div class="carousel-item {{($key==0) ? 'active' : ''}}">
                                 <img class="w-200 h-200" src="{{asset('uploads/product/large/'
                                 .$productImage->image)}}" alt=Image>
                             </div>
