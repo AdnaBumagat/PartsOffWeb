@@ -140,19 +140,13 @@ class CartApiController extends Controller
         //if user is not logged in then redirect to login page
         if(Auth::check() == false){
 
-            if(!session()->has('url.intended')){
-                session(['url.intended' => url()->current()]);
-            }
-
             return response()->json([
                 "message" => "User is not logged in"
             ]);
+
         }
 
-
         $customerAddress = CustomerAddress::where('user_id',Auth::user()->id)->first();
-
-        session()->forget('url.intended');
 
         $provinces = Province::orderBy('name','ASC')->get();
 
