@@ -43,16 +43,17 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label for="product_detail">Product Detail</label>
-                                        <textarea name="product_detail" id="product_detail" cols="30" rows="10" class="summernote" 
-                                        placeholder="Product Detail" value="{{$product->product_detail}}"></textarea>
+                                        <label for="description">Product Detail</label>
+                                        <textarea name="product_detail" id="product_detail" cols="30" rows="10" class="summernote" placeholder="Product Detail">
+                                            {{ $product->product_detail }}
+                                        </textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="description">Description</label>
                                         <textarea name="description" id="description" cols="30" rows="10" class="summernote" 
-                                        placeholder="Description" value="{{$product->description}}"></textarea>
+                                            placeholder="Description">{{$product->description}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -281,6 +282,19 @@
         });
         }
     }
+
+    // Initialize Summernote
+    $('.summernote').summernote({
+        height: 300,
+        callbacks: {
+            onInit: function () {
+                // Remove <p> tags when Summernote is initialized
+                $(this).summernote('code', $(this).summernote('code').replace(/<p>/g, '').replace(/<\/p>/g, ''));
+            }
+        }
+    });
+    
+
 
 
 </script>
