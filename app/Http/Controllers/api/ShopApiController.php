@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Models\Category;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 class ShopApiController extends Controller
@@ -64,11 +65,19 @@ class ShopApiController extends Controller
             ->with('product_images')
             ->first();
 
+        $productID = Product::select('id')
+            ->where('title', $title)
+            ->first();
+
+        $productImages = ProductImage::select('image')
+            ->where('product_id', $productID);
+
         if ($product == null){
             abort(404);
         }
 
         $data['product'] = $product;
+        $data['product_image'] = $productImages;
 
         return response()->json([
             'data' => $data
