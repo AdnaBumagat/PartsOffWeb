@@ -63,7 +63,7 @@ class ShopApiController extends Controller
         $product = Product::select('title', 'description', 'price', 'qty')
             ->where('title', $title)
             ->with(['product_images' => function($query){
-                $query->select('image');
+                $query->select('id','image');
             }])
             ->first();
 
