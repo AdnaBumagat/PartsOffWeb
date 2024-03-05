@@ -59,7 +59,11 @@ class ShopApiController extends Controller
 
     public function productDisplay($title)
     {
-        $product = Product::where('title', $title)->with('product_images')->first();
+        $product = Product::select('title', 'description', 'price', 'qty')
+            ->where('title', $title)
+            ->with('product_images')
+            ->first();
+
         if ($product == null){
             abort(404);
         }
