@@ -50,4 +50,5 @@ Route::get('/process-checkout', [CartApiController::class, 'processCheckout']);
 //* Shop api
 Route::get('/shop/{categorySlug?}', [ShopApiController::class, 'index']);
 Route::get('/product/{slug}',[ShopApiController::class,'product']);
+Route::get('/shop-getProduct/{title}', [ShopApiController::class, 'productDisplay']);
 

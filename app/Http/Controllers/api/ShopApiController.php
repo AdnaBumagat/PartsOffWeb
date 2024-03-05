@@ -56,4 +56,19 @@ class ShopApiController extends Controller
             'data' => $data
         ]);
     }
+
+    public function productDisplay($title)
+    {
+        $product = Product::where('title', $title)->with('product_images')->first();
+        if ($product == null){
+            abort(404);
+        }
+
+        $data['product'] = $product;
+
+        return response()->json([
+            'data' => $data
+        ]);
+
+    }
 }
