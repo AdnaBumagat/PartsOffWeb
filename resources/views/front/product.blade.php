@@ -44,7 +44,7 @@
                     <h1>{{$product->title}}</h1>
                     <h2 class="price ">₱{{$product->price}}</h2>
                     <h6 class="qty" style="mb-1">Stock Available:{{$product->qty}}</h6>
-
+                    <br>
                     <div>{!!$product->product_detail!!}</div>
                     {{-- <a href="javascript:void(0)" onclick="addToCart({{$product->id}});" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> &nbsp;ADD TO CART</a> --}}
                         @if ($product->track_qty == 'Yes')
