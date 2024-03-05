@@ -62,22 +62,16 @@ class ShopApiController extends Controller
     {
         $product = Product::select('title', 'description', 'price', 'qty')
             ->where('title', $title)
-            ->with('product_images')
+            ->with(['product_images' => function($query){
+                $query->select('image');
+            }])
             ->first();
-
-        $productID = Product::select('id')
-            ->where('title', $title)
-            ->first();
-
-        $productImages = ProductImage::select('image')
-            ->where('product_id', $productID);
 
         if ($product == null){
             abort(404);
         }
 
         $data['product'] = $product;
-        $data['product_image'] = $productImages;
 
         return response()->json([
             'data' => $data
