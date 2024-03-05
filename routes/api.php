@@ -40,6 +40,12 @@ Route::get('/categories',[CategoryApiController::class,'index']);
 
 //* Cart api
 Route::get('/cart', [CartApiController::class, 'cart']);
+Route::get('/add-to-cart', [CartApiController::class, 'addToCart']);
+Route::get('/update-cart', [CartApiController::class, 'updateCart']);
+Route::get('/delete-item', [CartApiController::class, 'deleteItem']);
+Route::get('/checkout', [CartApiController::class, 'checkout']);
+Route::get('/process-checkout', [CartApiController::class, 'processCheckout']);
+
 
 //* Shop api
 Route::get('/shop/{categorySlug?}', [ShopApiController::class, 'index']);
