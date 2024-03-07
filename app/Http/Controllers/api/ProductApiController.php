@@ -25,8 +25,9 @@ class ProductApiController extends Controller
     }
 
     public function displayProduct(){
-
-        $products = Product::select('id', 'title', 'description', 'price', 'qty')->get();
+        $products = Product::with('product_images')
+        ->select('id','title', 'description', 'price', 'qty')
+        ->get();
 
         return response()->json($products);
 
