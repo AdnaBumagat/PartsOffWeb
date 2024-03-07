@@ -47,16 +47,14 @@ class AuthApiController extends Controller
                     'user' => $data
                 ]);
             } else {
-
                 return response()->json([
                     'message' => 'Either email or password is incorrect.'
-                ]);
+                ], 401);
             }
         } else {
-
             return response()->json([
                 'message' => 'Email and password is required.'
-            ]);
+            ], 422);
         }
     }
 
@@ -96,8 +94,8 @@ class AuthApiController extends Controller
         } else {
             return response()->json([
                 'status' => false,
-                'errors' => $validator->errors()
-            ]);
+                'errors' => $validator->errors(),
+            ], 422);
         }
     }
 
