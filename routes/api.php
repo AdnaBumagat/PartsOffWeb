@@ -24,13 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //* Authentication
-Route::get('/authenticate',[AuthApiController::class,'authenticate']);
+Route::get('/users' ,[AuthApiController::class, 'getUsers']);
+Route::post('/authenticate',[AuthApiController::class,'authenticate']);
 Route::get('/logout',[AuthApiController::class,'logout']);
-Route::get('/register', [AuthApiController::class, 'processRegister']);
+Route::post('/register', [AuthApiController::class, 'processRegister']);
 Route::post('/change-password', [AuthApiController::class, 'changePassword']);
 
 //* Product api
 Route::get('/products',[ProductApiController::class,'index']);
+Route::get('/displayProducts', [ProductApiController::class, 'displayProduct']);
 Route::get('/products/latest', [ProductApiController::class, 'getLatestProduct']);
 
 //* Categories api
@@ -38,8 +40,15 @@ Route::get('/categories',[CategoryApiController::class,'index']);
 
 //* Cart api
 Route::get('/cart', [CartApiController::class, 'cart']);
+Route::get('/add-to-cart', [CartApiController::class, 'addToCart']);
+Route::get('/update-cart', [CartApiController::class, 'updateCart']);
+Route::get('/delete-item', [CartApiController::class, 'deleteItem']);
+Route::get('/checkout', [CartApiController::class, 'checkout']);
+Route::get('/process-checkout', [CartApiController::class, 'processCheckout']);
+
 
 //* Shop api
 Route::get('/shop/{categorySlug?}', [ShopApiController::class, 'index']);
 Route::get('/product/{slug}',[ShopApiController::class,'product']);
+Route::get('/shop-getProduct/{title}', [ShopApiController::class, 'productDisplay']);
 

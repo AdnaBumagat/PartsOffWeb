@@ -3,7 +3,8 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Parts OFF</title>
+    <title>Parts Off</title>
+    <link rel="icon" href="{{asset('favicon.png')}}">
     <meta name="description" content="" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no" />
@@ -31,39 +32,38 @@
 
     <div class="top-header" style="background-color:#6b21a8">
         <div class="container">
-            <div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
-                <div class="col-lg-4 logo">
-                    <a href="{{Route('front.home')}}" class="text-decoration-none">
+            <div class="row align-items-center py-3 d-lg-flex justify-content-between ">
+                <div class="col-9 logo">
+                    <a href="{{ Route('front.home') }}" class="text-decoration-none">
                         <span class="h1 text-uppercase text-white bg-dark px-2">Parts</span>
-                        <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">OFF</span>
+                        <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1" style="white-space: nowrap;">OFF</span>
                     </a>
+                    
                 </div>
-                <div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
-                    @if (Auth::check())
-                        <a href="{{Route('account.profile')}}" class="nav-link text-dark">My Account</a>
-                    @else
-                        <a href="{{Route('account.login')}}" class="nav-link text-dark">Login/Register</a>
-                    @endif
-                    <form action="{{route('front.shop')}}" method="get">
+                <div class="col-3 text-left d-flex justify-content-end align-items-center">
+                    <form action="{{route('front.shop')}}" method="get" class="d-none d-lg-block">
+                        <!-- Hide on mobile devices -->
                         <div class="input-group">
-                            <input value="{{Request::get('search')}}" type="text" placeholder="Search For Products" class="form-control" name="search">
+                            <input value="{{Request::get('search')}}" type="text" placeholder="Search" class="form-control" name="search">
                             <button type="submit" class="input-group-text">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
                     </form>
+                    @if (Auth::check())
+                        <a href="{{Route('account.profile')}}" class="nav-link text-dark">Profile</i></a>
+                    @else
+                        <a href="{{Route('account.login')}}" class="nav-link text-dark">SignUp</i></a>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+    
 
     <header class="bg-dark">
         <div class="container">
             <nav class="navbar navbar-expand-xl" id="navbar">
-                <a href="index.php" class="text-decoration-none mobile-logo">
-                    <span class="h2 text-uppercase text-primary bg-dark">Parts</span>
-                    <span class="h2 text-uppercase text-white px-2">OFF</span>
-                </a>
                 <button class="navbar-toggler menu-btn" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -72,10 +72,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php" title="Products">Home</a>
-        </li> -->
-
                         <!--HEADER CATEGORIES-->
                         @if (getCategories()->isNotEmpty())
                             @foreach (getCategories() as $category)
@@ -86,15 +82,27 @@
                                 </li>
                             @endforeach
                         @endif
-
-
                     </ul>
                 </div>
-                <div class="right-nav py-0">
-                    <a href="{{route('front.cart')}}" class="ml-3 d-flex pt-2">
-                        <i class="fas fa-shopping-cart text-white"></i>
-                    </a>
+                <div class="right-nav d-flex py-0">
+                    <div class="mr-2 mr-lg-4">
+                        <form action="{{ route('front.shop') }}" method="get" class="d-lg-none" style="max-width: 150px;">
+                            <div class="input-group">
+                                <input value="{{ Request::get('search') }}" type="text" placeholder="Search" class="form-control" name="search">
+                                    <button type="submit" class="input-group-text ">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="">
+                        <a href="{{ route('front.cart') }}" class="btn btn-link">
+                            <i class="fas fa-shopping-cart text-white"></i>
+                        </a>
+                    </div>
                 </div>
+                
+                
             </nav>
         </div>
     </header>
@@ -109,9 +117,9 @@
                 <div class="col-md-4">
                     <div class="footer-card">
                         <h2  class="my-3"><i class="fas fa-info-circle"></i> About Us</h2>
-                        <p>Parts OFF is your go-to website to sell or buy<br>
-                            second hand computer parts or accessories. We<br>
-                            offer good service and quality products. We are<br>
+                        <p>Parts OFF is your go to when you want to buy<br>
+                            second hand computer parts or accessories.<br> We
+                            offer good service and quality products.<br> We are
                             sure you can find what you are looking for!<br>
                         </p>
                     </div>
@@ -203,5 +211,18 @@
     </script>
 
 </body>
+<style>
+.copy-right a {
+    cursor: pointer; 
+}
+
+@media (max-width: 564px) {
+    .copy-right a {
+        pointer-events: none; 
+        text-decoration: none; 
+        color: inherit; /
+    }
+}
+</style>
 
 </html>

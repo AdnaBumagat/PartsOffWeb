@@ -39,18 +39,6 @@
                                 <p></p>
                             </div>
                         </div>
-                        <!--Category image-->
-                        <div class="col-md-6">
-                            <div class="mb=3">
-                                <input type="hidden" id="image_id" name="image_id" value="">
-                                <label for="image">Image</label>
-                                <div id="image" class="dropzone dz-clickable">
-                                    <div class="dz-message needsclick">
-                                        <br>Drop files here or click to upload.<br><br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <!--Category status-->
                         <div class="col-md-6">
                             <div class="mb-3">

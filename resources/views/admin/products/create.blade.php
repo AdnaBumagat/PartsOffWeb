@@ -244,6 +244,18 @@
         $("#image-row-"+id).remove();
     }
 
+    // Initialize Summernote
+    $('.summernote').summernote({
+        height: 300,
+        callbacks: {
+            onInit: function () {
+                // Remove <p> tags when Summernote is initialized
+                $(this).summernote('code', $(this).summernote('code').replace(/<p>/g, '').replace(/<\/p>/g, ''));
+            }
+        }
+    });
+    
+
 
 </script>
 

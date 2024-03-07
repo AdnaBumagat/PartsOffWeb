@@ -12,6 +12,15 @@ use App\Models\User;
 class AuthApiController extends Controller
 {
 
+    //* GET users
+    public function getUsers(){
+        $users = User::all();
+
+        return response()->json([
+            'users' => $users
+        ]);
+    }
+
     //* Login function
     public function authenticate(Request $request)
     {
@@ -24,10 +33,18 @@ class AuthApiController extends Controller
 
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
+
+                $userId = Auth::id();
+                $user = Auth::user()->email;
+
+                $data['userId'] = $userId;
+                $data['userEmail'] = $user;
+
                 //$token = $validator->createToken('token')->plainTextToken;
                 return response()->json([
+                    'status' => true,
                     'message' => 'Login successful',
-                    //'token' => $token,
+                    'user' => $data
                 ]);
             } else {
 
@@ -48,6 +65,7 @@ class AuthApiController extends Controller
     {
         Auth::logout();
         return response()->json([
+            'status' => true,
             'message' => 'Successfully logged out.'
         ]);
     }
@@ -86,12 +104,12 @@ class AuthApiController extends Controller
     //* Change password
     public function changePassword(Request $request)
     {
-        $valdidator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'old_password' => 'required',
             'new_password' => 'required|min:5',
             'confirm_password' => 'required|same:new_password'
         ]);
-        if ($valdidator->passes()) {
+        if ($validator->passes()) {
 
             $user = User::select('id', 'password')->where('id', Auth::user()->id)->first();
 
@@ -112,7 +130,7 @@ class AuthApiController extends Controller
         } else {
             return response()->json([
                 'status' => false,
-                'errors' => $valdidator->errors()
+                'errors' => $validator->errors()
             ]);
         }
     }

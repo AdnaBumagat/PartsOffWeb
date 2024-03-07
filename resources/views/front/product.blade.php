@@ -22,13 +22,13 @@
 
                         @if ($product->product_images)
                             @foreach($product->product_images as $key => $productImage)
-                            <div class ="carouse-item"{{($key==0) ? 'active' : ''}}>
+                            <div class="carousel-item {{($key==0) ? 'active' : ''}}">
                                 <img class="w-200 h-200" src="{{asset('uploads/product/large/'
                                 .$productImage->image)}}" alt=Image>
                             </div>
 
                             @endforeach
-                            
+
                         @endif
                     </div>
                     <a class="carousel-control-prev" href="#product-carousel" data-bs-slide="prev">
@@ -43,8 +43,9 @@
                 <div class="bg-light right">
                     <h1>{{$product->title}}</h1>
                     <h2 class="price ">₱{{$product->price}}</h2>
-
-                    <div>{!!$product->product_detail!!}<div>
+                    <h6 class="qty" style="mb-1">Stock Available:{{$product->qty}}</h6>
+                    <br>
+                    <div>{!!$product->product_detail!!}</div>
                     {{-- <a href="javascript:void(0)" onclick="addToCart({{$product->id}});" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> &nbsp;ADD TO CART</a> --}}
                         @if ($product->track_qty == 'Yes')
                            @if ($product->qty > 0 )
@@ -62,9 +63,9 @@
                        </a>
                        @endif
                 </div>
-            </div>    
+            </div>
         </div>
-    </div>        
+    </div>
 </section>
 <section class="section-7 pt-3 mb-3">
     <div class="container">
@@ -81,7 +82,7 @@
                     </div>
                 </div>
             </div>
-        </div>   
+        </div>
     </div>
 </section>
 @endsection

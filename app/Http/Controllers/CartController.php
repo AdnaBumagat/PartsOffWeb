@@ -153,6 +153,9 @@ class CartController extends Controller
 
         
         $customerAddress = CustomerAddress::where('user_id',Auth::user()->id)->first();
+        $shipping = 35;
+        $grandTotal = 0;
+        $grandTotal = Cart::subtotal(2,'.','') + $shipping;
 
 
         session()->forget('url.intended');
@@ -161,7 +164,9 @@ class CartController extends Controller
 
         return view('front.checkout',[
             'provinces' => $provinces,
-            '$customerAddress' => $customerAddress
+            'customerAddress' => $customerAddress,
+            'shipping'=>$shipping,
+            'grandTotal'=>$grandTotal
         ]);
     }
 
@@ -214,13 +219,12 @@ class CartController extends Controller
 
         if($request->payment_method == 'cod'){
             
-            $shipping = 0;
+            $shipping = 35;
             $subTotal = Cart::subtotal(2,'.','');
             $grandTotal = $subTotal+$shipping;
             
             $order =new Order;
             $order->subtotal = $subTotal;
-            // $order->shipping = $shipping;
             $order->grand_total = $grandTotal;
             $order->payment_status = 'not paid';
             $order->status = 'pending';

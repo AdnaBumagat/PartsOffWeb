@@ -131,10 +131,10 @@
                                 <span>Subtotal</span>
                                 <span class="ms-auto">₱{{number_format($order->subtotal,2)}}</span>
                             </li>
-                            {{-- <li class="list-group-item d-flex">
+                             <li class="list-group-item d-flex">
                                 <span>Shipping</span>
-                                <span class="ms-auto">₱8.00</span>
-                            </li> --}}
+                                <span class="ms-auto">₱35.00</span>
+                            </li> 
                             <li class="list-group-item d-flex fs-lg fw-bold">
                                 <span>Grand Total</span>
                                 <span class="ms-auto">₱{{number_format($order->grand_total,2)}}</span>
