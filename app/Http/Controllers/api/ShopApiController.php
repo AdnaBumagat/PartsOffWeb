@@ -71,11 +71,7 @@ class ShopApiController extends Controller
             abort(404);
         }
 
-        $data['product'] = $product;
-
-        return response()->json([
-            'data' => $data
-        ]);
+        return response()->json($product);
 
     }
 }
