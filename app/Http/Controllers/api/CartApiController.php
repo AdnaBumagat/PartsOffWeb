@@ -23,7 +23,7 @@ class CartApiController extends Controller
             return response()->json([
                 'status' =>false,
                 'message' =>'Record not Found'
-            ]);
+            ], 404);
         }
 
         if(Cart::count() > 0){
@@ -70,9 +70,7 @@ class CartApiController extends Controller
 
     public function cart() {
         $cartContent = Cart::content();
-        //dd($cartContent);
-        $data['cartContent'] = $cartContent;
-        return response()->json($data);
+        return response()->json($cartContent);
     }
 
     public function updateCart(Request $request) {
@@ -115,7 +113,7 @@ class CartApiController extends Controller
             return response()->json([
                 'status'=> false,
                 'message' => $errorMessage
-            ]);
+            ], 404);
 
         }
         Cart::remove($request->rowId);
@@ -128,22 +126,13 @@ class CartApiController extends Controller
 
     }
 
-    public function checkout(Request $request){
+    public function checkout(){
 
         //-- if cart is empty redirect to cart page
         if(Cart::count() == 0){
             return response()->json([
                 "message" => "cart is empty"
             ]);
-        }
-
-        //if user is not logged in then redirect to login page
-        if(Auth::check() == false){
-
-            return response()->json([
-                "message" => "User is not logged in"
-            ]);
-
         }
 
         $customerAddress = CustomerAddress::where('user_id',Auth::user()->id)->first();
