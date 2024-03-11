@@ -58,77 +58,71 @@
 </section>
 <script src="{{ asset('front-assets/js/jquery-3.6.0.min.js') }}"></script>
 <script>
-    $("#profileForm").submit(function(event){
-        event.preventDefault();
+$("#profileForm").submit(function(event){
+    event.preventDefault();
 
-        $.ajax({
-            url:'{{route("account.updateProfile")}}',
-            type: 'post',
-            data: $(this).serializeArray(),
-            dataType: 'json',
-            success: function(response){
-                if(response.status == true){
+    var phone = $("#phone").val();
+    var phoneRegex = /^\d{11}$/;
 
+    if (!phoneRegex.test(phone)) {
+        $("#phone").addClass('is-invalid')
+            .siblings('p')
+            .html('Phone number must have exactly 11 digits')
+            .addClass('invalid-feedback');
+        return;
+    }
+
+    $.ajax({
+        url:'{{route("account.updateProfile")}}',
+        type: 'post',
+        data: $(this).serializeArray(),
+        dataType: 'json',
+        success: function(response){
+            if(response.status == true){
+                // Code for successful update
+                window.location.href ='{{route("account.profile")}}';
+            } else {
+                // Code for handling errors
+                var errors = response.errors;
+                if(errors.name){
+                    $("#name").addClass('is-invalid')
+                        .siblings('p')
+                        .html(errors.name)
+                        .addClass('invalid-feedback');
+                } else {
                     $("#name").removeClass('is-invalid')
                         .siblings('p')
                         .html('')
                         .removeClass('invalid-feedback');
+                }
 
+                if(errors.email){
+                    $("#email").addClass('is-invalid')
+                        .siblings('p')
+                        .html(errors.email)
+                        .addClass('invalid-feedback');
+                } else {
                     $("#email").removeClass('is-invalid')
                         .siblings('p')
                         .html('')
                         .removeClass('invalid-feedback');
+                }
 
+                if(errors.phone){
+                    $("#phone").addClass('is-invalid')
+                        .siblings('p')
+                        .html(errors.phone)
+                        .addClass('invalid-feedback');
+                } else {
                     $("#phone").removeClass('is-invalid')
                         .siblings('p')
                         .html('')
                         .removeClass('invalid-feedback');
-
-                        window.location.href ='{{route("account.profile")}}'
-
-                }else{
-                    var errors = response.errors;;
-                    if(errors.name){
-                        $("#name").addClass('is-invalid')
-                        .siblings('p')
-                        .html(errors.name)
-                        .addClass('invalid-feedback')
-                    }else{
-                        $("#name").removeClass('is-invalid')
-                        .siblings('p')
-                        .html('')
-                        .removeClass('invalid-feedback')
-                    }
-
-                    if(errors.email){
-                        $("#email").addClass('is-invalid')
-                        .siblings('p')
-                        .html(errors.email)
-                        .addClass('invalid-feedback')
-                    }else{
-                        $("#email").removeClass('is-invalid')
-                        .siblings('p')
-                        .html('')
-                        .removeClass('invalid-feedback')
-                    }
-                    
-                    if(errors.phone){
-                        $("#phone").addClass('is-invalid')
-                        .siblings('p')
-                        .html(errors.phone)
-                        .addClass('invalid-feedback')
-                    }else{
-                        $("#phone").removeClass('is-invalid')
-                        .siblings('p')
-                        .html('')
-                        .removeClass('invalid-feedback')
-                    }
-
                 }
-
             }
-        });
+        }
     });
+});
 
 
 

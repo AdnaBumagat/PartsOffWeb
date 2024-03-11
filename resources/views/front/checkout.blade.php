@@ -24,29 +24,29 @@
                     <div class="card shadow-lg border-0">
                         <div class="card-body checkout-form">
                             <div class="row">
-                                
+
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <input type="text" name="first_name" id="first_name"
                                          class="form-control" placeholder="First Name" value="{{(!empty($customerAddress)) ? $customerAddress->first_name : ''}}">
                                          <p></p>
-                                    </div>            
+                                    </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <input type="text" name="last_name" id="last_name"
                                          class="form-control" placeholder="Last Name" value="{{(!empty($customerAddress)) ? $customerAddress->last_name : ''}}">
                                          <p></p>
-                                    </div>            
+                                    </div>
                                 </div>
-                                
+
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <input type="text" name="email" id="email"
                                          class="form-control" placeholder="Email" value="{{(!empty($customerAddress)) ? $customerAddress->email : ''}}">
                                          <p></p>
-                                    </div>            
-                                </div> 
+                                    </div>
+                                </div>
 
                                 <div class="col-md-12">
                                     <div class="mb-3">
@@ -59,15 +59,15 @@
                                             @endif
                                         </select>
                                         <p></p>
-                                    </div>            
+                                    </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <textarea name="address" id="address" cols="30" rows="3"
                                          placeholder="Address" class="form-control">{{(!empty($customerAddress)) ? $customerAddress->address : ''}}</textarea>
-                                    </div>    
-                                    <p></p>        
+                                    </div>
+                                    <p></p>
                                 </div>
 
 
@@ -76,7 +76,7 @@
                                         <input type="text" name="city" id="city" class="form-control"
                                          placeholder="City" value="{{(!empty($customerAddress)) ? $customerAddress->city : ''}}">
                                          <p></p>
-                                    </div>            
+                                    </div>
                                 </div>
 
                                 <div class="col-md-4">
@@ -84,15 +84,15 @@
                                         <input type="text" name="barangay" id="barangay"
                                          class="form-control" placeholder="Barangay" value="{{(!empty($customerAddress)) ? $customerAddress->barangay : ''}}">
                                          <p></p>
-                                    </div>            
+                                    </div>
                                 </div>
-                                
+
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <input type="text" name="zip" id="zip"
                                          class="form-control" placeholder="Zip" value="{{(!empty($customerAddress)) ? $customerAddress->zip : ''}}">
                                          <p></p>
-                                    </div>            
+                                    </div>
                                 </div>
 
                                 <div class="col-md-12">
@@ -100,19 +100,19 @@
                                         <input type="text" name="mobile" id="mobile"
                                          class="form-control" placeholder="Mobile No." value="{{(!empty($customerAddress)) ? $customerAddress->mobile : ''}}">
                                          <p></p>
-                                    </div>            
+                                    </div>
                                 </div>
-                                
+
 
 
                             </div>
                         </div>
-                    </div>    
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="sub-title">
                         <h2>Order Summary</h3>
-                    </div>                    
+                    </div>
                     <div class="card cart-summery">
                         <div class="card-body">
 
@@ -133,13 +133,15 @@
                             </div>
                             <div class="d-flex justify-content-between mt-2 summery-end">
                                 <div class="h5"><strong>Total</strong></div>
+                                <div class="h5"><strong>₱{{Cart::subtotal()}}</strong></div>
+                            </div>
                                 <div class="h5"><strong>₱{{$grandTotal}}</strong></div>
-                            </div>                            
+                            </div>
                         </div>
-                    </div>   
-                    
-                    <div class="card payment-form ">     
-                        
+                    </div>
+
+                    <div class="card payment-form ">
+
                         <h3 class="card-title h5 mb-3">Payment Method</h3>
                         <div class="form-check" style="display: none;">
                             <input checked type="radio" name="payment_method" value="cod" id="payment_method_one">
@@ -151,9 +153,9 @@
                             {{-- <a href="#" class="btn-dark btn btn-block w-100">Pay Now</a> --}}
                             <div style="text-align: center"> Prepare your payment upon on delivery</div>
                             <button type="submit" class="btn-dark btn btn-block w-100">Place your Order</button>
-                        </div>               
-                    </div>               
-                    <!-- CREDIT CARD FORM ENDS HERE -->             
+                        </div>
+                    </div>
+                    <!-- CREDIT CARD FORM ENDS HERE -->
                 </div>
             </div>
         </form>
@@ -185,7 +187,7 @@
             success: function(response){
                 var errors =response.errors;
                 $('button[type="submit"]').prop('disabled',false);
-                
+
                 if(response.status ==false){
                     //First Name
                     if(errors.first_name){
