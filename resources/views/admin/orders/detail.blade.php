@@ -133,7 +133,7 @@
     $(document).ready(function(){
         $('#shipped_date').datetimepicker({
             //option here
-            format:'Y-m-d H:i:s'
+            format:'Y-m-d'
         });
     });
 

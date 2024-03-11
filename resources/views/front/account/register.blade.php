@@ -19,28 +19,28 @@
                     @csrf
                     <h4 class="modal-title">Register Now</h4>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Name" id="name" name="name">
+                        <input type="text" class="form-control" placeholder="Name" id="name" name="name" required>
                         <p></p>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Email" id="email" name="email">
+                        <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
                         <p></p>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Phone" id="phone" name="phone">
+                        <input type="tel" class="form-control" placeholder="Phone (11 digits)" id="phone" name="phone" pattern="[0-9]{11}" required>
                         <p></p>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+                        <input type="password" class="form-control" placeholder="Password" id="password" name="password" required>
                         <p></p>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Confirm Password" id="password_confirmation" name="password_confirmation">
+                        <input type="password" class="form-control" placeholder="Confirm Password" id="password_confirmation" name="password_confirmation" required>
                         <p></p>
                     </div>
                     <button type="submit" class="btn btn-dark btn-block btn-lg" value="Register">Register</button>
                 </form>
-                <div class="text-center small">Already have an account? <a href="{{route('account.login')}}">Login Now</a></div>
+                <div class="text-center small">Already have an account? <a href="{{ route('account.login') }}">Login Now</a></div>
             </div>
         </div>
     </section>
@@ -63,38 +63,49 @@
 
                    if(response.status == false) {
                     if(errors.name) {
-                        $("name").siblings("p").addClass('invalid-feedback').html(errors.name);
-                        $("name").addClass('is-invalid');
+                        $("#name").siblings("p").addClass('invalid-feedback').html(errors.name);
+                        $("#name").addClass('is-invalid');
                     } else{
-                        $("name").siblings("p").removeClass('invalid-feedback').html('');
-                        $("name").removeClass('is-invalid');
+                        $("#name").siblings("p").removeClass('invalid-feedback').html('');
+                        $("#name").removeClass('is-invalid');
                     }
 
                     if(errors.email) {
-                        $("email").siblings("p").addClass('invalid-feedback').html(errors.email);
-                        $("email").addClass('is-invalid');
+                        $("#email").siblings("p").addClass('invalid-feedback').html(errors.email);
+                        $("#email").addClass('is-invalid');
                     } else{
-                        $("email").siblings("p").removeClass('invalid-feedback').html('');
-                        $("email").removeClass('is-invalid');
+                        $("#email").siblings("p").removeClass('invalid-feedback').html('');
+                        $("#email").removeClass('is-invalid');
+                    }
+
+                    if(errors.phone) {
+                        $("#phone").siblings("p").addClass('invalid-feedback').html(errors.phone);
+                        $("#phone").addClass('is-invalid');
+                    } else{
+                        $("#phone").siblings("p").removeClass('invalid-feedback').html('');
+                        $("#phone").removeClass('is-invalid');
                     }
 
                     if(errors.password) {
-                        $("password").siblings("p").addClass('invalid-feedback').html(errors.password);
-                        $("password").addClass('is-invalid');
+                        $("#password").siblings("p").addClass('invalid-feedback').html(errors.password);
+                        $("#password").addClass('is-invalid');
                     } else{
-                        $("password").siblings("p").removeClass('invalid-feedback').html('');
-                        $("password").removeClass('is-invalid');
+                        $("#password").siblings("p").removeClass('invalid-feedback').html('');
+                        $("#password").removeClass('is-invalid');
                     }
                    } else {
 
-                    $("name").siblings("p").removeClass('invalid-feedback').html('');
-                    $("name").removeClass('is-invalid');
+                    $("#name").siblings("p").removeClass('invalid-feedback').html('');
+                    $("#name").removeClass('is-invalid');
 
-                    $("email").siblings("p").removeClass('invalid-feedback').html('');
-                    $("email").removeClass('is-invalid');
+                    $("#email").siblings("p").removeClass('invalid-feedback').html('');
+                    $("#email").removeClass('is-invalid');
 
-                    $("password").siblings("p").removeClass('invalid-feedback').html('');
-                    $("password").removeClass('is-invalid');
+                    $("#phone").siblings("p").removeClass('invalid-feedback').html('');
+                    $("#phone").removeClass('is-invalid');
+
+                    $("#password").siblings("p").removeClass('invalid-feedback').html('');
+                    $("#password").removeClass('is-invalid');
 
                     window.location.href="{{ route('account.login') }}";
                    }
