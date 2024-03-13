@@ -44,7 +44,7 @@ Route::get('/add-to-cart', [CartApiController::class, 'addToCart']);
 Route::get('/update-cart', [CartApiController::class, 'updateCart']);
 Route::get('/delete-item', [CartApiController::class, 'deleteItem']);
 Route::get('/checkout', [CartApiController::class, 'checkout']);
-Route::get('/process-checkout', [CartApiController::class, 'processCheckout']);
+Route::post('/process-checkout', [CartApiController::class, 'processCheckout']);
 
 
 //* Shop api

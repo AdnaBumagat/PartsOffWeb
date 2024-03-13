@@ -160,6 +160,8 @@ class CartApiController extends Controller
             'barangay' => 'required',
             'zip' => 'required',
             'mobile' => 'required',
+            'subtotal' => 'required',
+            'grand_total' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -188,13 +190,9 @@ class CartApiController extends Controller
 
         //Store Data in orders table
 
-        $shipping = 35;
-        $subTotal = Cart::subtotal(2, '.', '');
-        $grandTotal = $subTotal + $shipping;
-
         $order = new Order;
-        $order->subtotal = $subTotal;
-        $order->grand_total = $grandTotal;
+        $order->subtotal = $request->subtotal;
+        $order->grand_total = $request->grand_total;
         $order->payment_status = 'not paid';
         $order->status = 'pending';
         $order->user_id = $request->id;
@@ -211,22 +209,24 @@ class CartApiController extends Controller
         $order->save();
 
         //store order items in order items table
-        foreach ($request as $item) {
+        foreach ($request->order_items as $item) {
+            $productData = Product::find($item['product_id']);
+
             $orderItem = new OrderItem;
-            $orderItem->product_id = $item->id;
-            $orderItem->order_id = $item->id;
-            $orderItem->name = $item->name;
-            $orderItem->qty = $item->qty;
-            $orderItem->price = $item->price;
-            $orderItem->total = $item->price * $item->qty;
+            $orderItem->product_id = $item['product_id'];
+            $orderItem->order_id = $order->id;
+            $orderItem->name = $productData->title;
+            $orderItem->qty = $item['qty'];
+            $orderItem->price = $productData->price;
+            $orderItem->total = $productData->price * $item['qty'];
             $orderItem->save();
 
             //Update Product Stock
-            $productData =  Product::find($item->id);
+
             if ($productData->track_qty == 'Yes') {
 
                 $currentQty = $productData->qty;
-                $updatedQty = $currentQty - $item->qty;
+                $updatedQty = $currentQty - $item['qty'];
                 $productData->qty = $updatedQty;
                 $productData->save();
             }
