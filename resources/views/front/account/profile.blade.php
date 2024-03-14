@@ -32,19 +32,19 @@
                                 <div class="mb-3">
                                     <label for="name">Name</label>
                                     <input value="{{$user->name}}" type="text" name="name" id="name" placeholder="Enter Your Name" class="form-control">
-                                    <p></p>
+                                    <p class="invalid-feedback"></p>
                                 </div>
                                 <div class="mb-3">
                                     <label for="email">Email</label>
                                     <input value="{{$user->email}}" type="text" name="email" id="email" placeholder="Enter Your Email" class="form-control">
-                                    <p></p>
+                                    <p class="invalid-feedback"></p>
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone">Phone</label>
                                     <input value="{{$user->phone}}" type="text" name="phone" id="phone" placeholder="Enter Your Phone" class="form-control">
-                                    <p></p>
+                                    <p class="invalid-feedback"></p>
                                 </div>
-                                <div class="error-message" style="color: red; display: none;"></div>
+
                                 <div class="d-flex">
                                     <button class="btn btn-dark">Update</button>
                                 </div>
@@ -66,22 +66,52 @@ $("#profileForm").submit(function(event){
     var phone = $("#phone").val().trim();
     var phoneRegex = /^\d{11}$/;
 
-    // Check if any of the fields are empty
-    if (name === '' || email === '' || phone === '') {
-        // Show error message for empty fields
-        $(".error-message").text("Please fill up all the fields.").show();
+    // Name validation
+    if (name === '') {
+        $("#name").addClass('is-invalid')
+            .siblings('p')
+            .html('The name field is required')
+            .addClass('invalid-feedback');
         return;
     } else {
-        $(".error-message").hide(); // Hide error message if all fields are filled
+        $("#name").removeClass('is-invalid')
+            .siblings('p')
+            .html('')
+            .removeClass('invalid-feedback');
     }
 
-    // Check phone number format
-    if (!phoneRegex.test(phone)) {
+    // Email validation
+    if (email === '') {
+        $("#email").addClass('is-invalid')
+            .siblings('p')
+            .html('The email field is required')
+            .addClass('invalid-feedback');
+        return;
+    } else {
+        $("#email").removeClass('is-invalid')
+            .siblings('p')
+            .html('')
+            .removeClass('invalid-feedback');
+    }
+
+    // Phone validation
+    if (phone === '') {
+        $("#phone").addClass('is-invalid')
+            .siblings('p')
+            .html('The phone field is required')
+            .addClass('invalid-feedback');
+        return;
+    } else if (!phoneRegex.test(phone)) {
         $("#phone").addClass('is-invalid')
             .siblings('p')
             .html('Phone number must have exactly 11 digits')
             .addClass('invalid-feedback');
         return;
+    } else {
+        $("#phone").removeClass('is-invalid')
+            .siblings('p')
+            .html('')
+            .removeClass('invalid-feedback');
     }
 
     // AJAX request
