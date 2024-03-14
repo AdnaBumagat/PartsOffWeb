@@ -33,7 +33,6 @@ class AuthApiController extends Controller
 
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-
                 $userId = Auth::id();
                 $user = Auth::user()->email;
 
