@@ -37,14 +37,12 @@ class AuthApiController extends Controller
                 $userId = Auth::id();
                 $user = Auth::user()->email;
 
-                $data['userId'] = $userId;
-                $data['userEmail'] = $user;
-
                 //$token = $validator->createToken('token')->plainTextToken;
                 return response()->json([
                     'status' => true,
                     'message' => 'Login successful',
-                    'user' => $data
+                    'userId' => $userId,
+                    'email' => $user
                 ]);
             } else {
                 return response()->json([
