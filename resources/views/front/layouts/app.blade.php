@@ -38,7 +38,7 @@
                         <span class="h1 text-uppercase text-white bg-dark px-2">Parts</span>
                         <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1" style="white-space: nowrap;">OFF</span>
                     </a>
-                    
+
                 </div>
                 <div class="col-3 text-left d-flex justify-content-end align-items-center">
                     <form action="{{route('front.shop')}}" method="get" class="d-none d-lg-block">
@@ -53,13 +53,13 @@
                     @if (Auth::check())
                         <a href="{{Route('account.profile')}}" class="nav-link text-dark">Profile</i></a>
                     @else
-                        <a href="{{Route('account.login')}}" class="nav-link text-dark">SignUp</i></a>
+                        <a href="{{Route('account.login')}}" class="nav-link text-dark">SignIn</i></a>
                     @endif
                 </div>
             </div>
         </div>
     </div>
-    
+
 
     <header class="bg-dark">
         <div class="container">
@@ -101,8 +101,8 @@
                         </a>
                     </div>
                 </div>
-                
-                
+
+
             </nav>
         </div>
     </header>
@@ -213,13 +213,13 @@
 </body>
 <style>
 .copy-right a {
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 @media (max-width: 564px) {
     .copy-right a {
-        pointer-events: none; 
-        text-decoration: none; 
+        pointer-events: none;
+        text-decoration: none;
         color: inherit; /
     }
 }
