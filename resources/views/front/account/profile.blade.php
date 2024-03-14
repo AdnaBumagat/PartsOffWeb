@@ -44,7 +44,7 @@
                                     <input value="{{$user->phone}}" type="text" name="phone" id="phone" placeholder="Enter Your Phone" class="form-control">
                                     <p></p>
                                 </div>
-
+                                <div class="error-message" style="color: red; display: none;"></div>
                                 <div class="d-flex">
                                     <button class="btn btn-dark">Update</button>
                                 </div>
@@ -61,9 +61,21 @@
 $("#profileForm").submit(function(event){
     event.preventDefault();
 
-    var phone = $("#phone").val();
+    var name = $("#name").val().trim();
+    var email = $("#email").val().trim();
+    var phone = $("#phone").val().trim();
     var phoneRegex = /^\d{11}$/;
 
+    // Check if any of the fields are empty
+    if (name === '' || email === '' || phone === '') {
+        // Show error message for empty fields
+        $(".error-message").text("Please fill up all the fields.").show();
+        return;
+    } else {
+        $(".error-message").hide(); // Hide error message if all fields are filled
+    }
+
+    // Check phone number format
     if (!phoneRegex.test(phone)) {
         $("#phone").addClass('is-invalid')
             .siblings('p')
@@ -72,8 +84,9 @@ $("#profileForm").submit(function(event){
         return;
     }
 
+    // AJAX request
     $.ajax({
-        url:'{{route("account.updateProfile")}}',
+        url: '{{route("account.updateProfile")}}',
         type: 'post',
         data: $(this).serializeArray(),
         dataType: 'json',
@@ -123,8 +136,5 @@ $("#profileForm").submit(function(event){
         }
     });
 });
-
-
-
 </script>
 @endsection
