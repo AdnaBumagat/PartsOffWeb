@@ -32,17 +32,17 @@
                                 <div class="mb-3">
                                     <label for="name">Name</label>
                                     <input value="{{$user->name}}" type="text" name="name" id="name" placeholder="Enter Your Name" class="form-control">
-                                    <p></p>
+                                    <p class="invalid-feedback"></p>
                                 </div>
                                 <div class="mb-3">
                                     <label for="email">Email</label>
                                     <input value="{{$user->email}}" type="text" name="email" id="email" placeholder="Enter Your Email" class="form-control">
-                                    <p></p>
+                                    <p class="invalid-feedback"></p>
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone">Phone</label>
                                     <input value="{{$user->phone}}" type="text" name="phone" id="phone" placeholder="Enter Your Phone" class="form-control">
-                                    <p></p>
+                                    <p class="invalid-feedback"></p>
                                 </div>
 
                                 <div class="d-flex">
@@ -61,19 +61,62 @@
 $("#profileForm").submit(function(event){
     event.preventDefault();
 
-    var phone = $("#phone").val();
+    var name = $("#name").val().trim();
+    var email = $("#email").val().trim();
+    var phone = $("#phone").val().trim();
     var phoneRegex = /^\d{11}$/;
 
-    if (!phoneRegex.test(phone)) {
+    // Name validation
+    if (name === '') {
+        $("#name").addClass('is-invalid')
+            .siblings('p')
+            .html('The name field is required')
+            .addClass('invalid-feedback');
+        return;
+    } else {
+        $("#name").removeClass('is-invalid')
+            .siblings('p')
+            .html('')
+            .removeClass('invalid-feedback');
+    }
+
+    // Email validation
+    if (email === '') {
+        $("#email").addClass('is-invalid')
+            .siblings('p')
+            .html('The email field is required')
+            .addClass('invalid-feedback');
+        return;
+    } else {
+        $("#email").removeClass('is-invalid')
+            .siblings('p')
+            .html('')
+            .removeClass('invalid-feedback');
+    }
+
+    // Phone validation
+    if (phone === '') {
+        $("#phone").addClass('is-invalid')
+            .siblings('p')
+            .html('The phone field is required')
+            .addClass('invalid-feedback');
+        return;
+    } else if (!phoneRegex.test(phone)) {
         $("#phone").addClass('is-invalid')
             .siblings('p')
             .html('Phone number must have exactly 11 digits')
             .addClass('invalid-feedback');
         return;
+    } else {
+        $("#phone").removeClass('is-invalid')
+            .siblings('p')
+            .html('')
+            .removeClass('invalid-feedback');
     }
 
+    // AJAX request
     $.ajax({
-        url:'{{route("account.updateProfile")}}',
+        url: '{{route("account.updateProfile")}}',
         type: 'post',
         data: $(this).serializeArray(),
         dataType: 'json',
@@ -123,8 +166,5 @@ $("#profileForm").submit(function(event){
         }
     });
 });
-
-
-
 </script>
 @endsection
