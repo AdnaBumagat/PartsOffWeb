@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Province;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
@@ -148,9 +149,7 @@ class CartApiController extends Controller
     {
 
         //Apply Validition
-
         $validator = Validator::make($request->all(), [
-            'id' => 'required',
             'first_name' => 'required|min:3',
             'last_name' => 'required',
             'email' => 'required|email',
@@ -172,21 +171,29 @@ class CartApiController extends Controller
             ], 401);
         }
 
-        CustomerAddress::updateOrCreate(
-            ['user_id' => $request->id],
-            [
-                'user_id' => $request->id,
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'email' => $request->email,
-                'mobile' => $request->mobile,
-                'province_id' => $request->province,
-                'address' => $request->address,
-                'city' => $request->city,
-                'barangay' => $request->barangay,
-                'zip' => $request->zip,
-            ]
-        );
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+
+            //return response()->json($user->id);
+            CustomerAddress::updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'user_id' => $user->id,
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'email' => $request->email,
+                    'mobile' => $request->mobile,
+                    'province_id' => $request->province,
+                    'address' => $request->address,
+                    'city' => $request->city,
+                    'barangay' => $request->barangay,
+                    'zip' => $request->zip,
+                ]
+            );
+        } else {
+            // Handle the case where no user is found with the provided email
+        }
 
         //Store Data in orders table
 
@@ -195,7 +202,7 @@ class CartApiController extends Controller
         $order->grand_total = $request->grand_total;
         $order->payment_status = 'not paid';
         $order->status = 'pending';
-        $order->user_id = $request->id;
+        $order->user_id = $user->id;
 
         $order->first_name = $request->first_name;
         $order->last_name = $request->last_name;
